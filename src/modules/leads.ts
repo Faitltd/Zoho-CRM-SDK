@@ -37,7 +37,7 @@ export class LeadsModule extends BaseModule<Lead, CreateLead, UpdateLead> {
         ? createRecordTransformer<Lead>(LEAD_FIELD_MAP, fieldNameStyle)
         : undefined;
     super(http, 'Leads', LeadSchema, transformer);
-    this.search = new LeadSearch(this.http, 'Leads', LeadSchema);
+    this.search = new LeadSearch(this.http, 'Leads', LeadSchema, transformer);
     this.supportsAdvancedFilters = options?.supportsAdvancedFilters ?? false;
   }
 
@@ -48,7 +48,12 @@ export class LeadsModule extends BaseModule<Lead, CreateLead, UpdateLead> {
    * @since 0.2.0
    */
   query(options?: LeadSearchOptions): LeadQueryBuilder {
-    const builder = new LeadQueryBuilder(this.http, 'Leads', LeadSchema);
+    const builder = new LeadQueryBuilder(
+      this.http,
+      'Leads',
+      LeadSchema,
+      this.transformRecord
+    );
     return builder.applyOptions(options);
   }
 

@@ -90,4 +90,16 @@ export type {
   BulkWriteJobStatus
 } from './types/bulk';
 export type { ZohoRecord, PaginationInfo, ZohoApiError } from './types/shared';
+export type {
+  LegacyLead,
+  LegacyContact,
+  LegacyDeal,
+  CompatibleLead,
+  CompatibleContact,
+  CompatibleDeal,
+  FieldNames,
+  PartialUpdate,
+  ZohoRecordEnvelope,
+  ZohoRecordUnion
+} from './types/utils';
 export { LEAD_FIELD_MAP, CONTACT_FIELD_MAP, DEAL_FIELD_MAP, WEBHOOK_FIELD_MAP } from './types';

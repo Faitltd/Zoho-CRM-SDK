@@ -32,6 +32,7 @@ export class LeadQueryBuilder {
   private readonly http: HttpClient;
   private readonly moduleName: string;
   private readonly responseSchema?: Schema<ZohoListResponse<Lead>>;
+  private readonly transformRecord?: (record: Lead) => Lead;
   private readonly clauses: CriteriaClause[] = [];
   private rawCriteria?: string;
   private selectedFields?: string[];
@@ -40,10 +41,11 @@ export class LeadQueryBuilder {
   private page?: number;
   private perPage?: number;
 
-  constructor(http: HttpClient, moduleName = 'Leads', schema?: Schema<Lead>) {
+  constructor(http: HttpClient, moduleName = 'Leads', schema?: Schema<Lead>, transformRecord?: (record: Lead) => Lead) {
     this.http = http;
     this.moduleName = moduleName;
     this.responseSchema = schema ? (ZohoDataResponseSchema(schema) as Schema<ZohoListResponse<Lead>>) : undefined;
+    this.transformRecord = transformRecord;
   }
 
   /**
@@ -154,7 +156,9 @@ export class LeadQueryBuilder {
       this.responseSchema
     );
 
-    return response.data.data ?? [];
+    const records = response.data.data ?? [];
+    const transformer = this.transformRecord;
+    return transformer ? records.map((record) => transformer(record)) : records;
   }
 
   private buildCriteria(): string | undefined {
@@ -178,16 +182,18 @@ export class LeadSearch {
   private readonly http: HttpClient;
   private readonly moduleName: string;
   private readonly schema?: Schema<Lead>;
+  private readonly transformRecord?: (record: Lead) => Lead;
 
-  constructor(http: HttpClient, moduleName = 'Leads', schema?: Schema<Lead>) {
+  constructor(http: HttpClient, moduleName = 'Leads', schema?: Schema<Lead>, transformRecord?: (record: Lead) => Lead) {
     this.http = http;
     this.moduleName = moduleName;
     this.schema = schema;
+    this.transformRecord = transformRecord;
   }
 
   byEmail(email: string, options?: LeadSearchOptions): Promise<Lead[]> {
     assertNonEmptyString(email, 'email');
-    const builder = new LeadQueryBuilder(this.http, this.moduleName, this.schema)
+    const builder = new LeadQueryBuilder(this.http, this.moduleName, this.schema, this.transformRecord)
       .where('Email', 'equals', email)
       .applyOptions(options);
 
@@ -196,7 +202,7 @@ export class LeadSearch {
 
   byPhone(phone: string, options?: LeadSearchOptions): Promise<Lead[]> {
     assertNonEmptyString(phone, 'phone');
-    const builder = new LeadQueryBuilder(this.http, this.moduleName, this.schema)
+    const builder = new LeadQueryBuilder(this.http, this.moduleName, this.schema, this.transformRecord)
       .where('Phone', 'equals', phone)
       .applyOptions(options);
 

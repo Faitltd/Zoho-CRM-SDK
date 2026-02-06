@@ -20,11 +20,13 @@ export interface AccessToken {
 export type AfterResponseHook = (ctx: AfterResponseContext) => void | Promise<void>;
 
 // @public (undocumented)
-export interface ApiResponse<T> {
+export interface ApiResponse<T = unknown, M = Record<string, unknown>> {
     // (undocumented)
     data: T;
     // (undocumented)
     headers: Record<string, string>;
+    // (undocumented)
+    meta?: M;
     // (undocumented)
     status: number;
 }
@@ -284,6 +286,15 @@ export interface CompatibilityReport {
     // (undocumented)
     warnings: string[];
 }
+
+// @public (undocumented)
+export type CompatibleContact<UseLegacy extends boolean = false> = UseLegacy extends true ? LegacyContact : Contact;
+
+// @public (undocumented)
+export type CompatibleDeal<UseLegacy extends boolean = false> = UseLegacy extends true ? LegacyDeal : Deal;
+
+// @public (undocumented)
+export type CompatibleLead<UseLegacy extends boolean = false> = UseLegacy extends true ? LegacyLead : Lead;
 
 // @public (undocumented)
 export function configureDeprecations(config?: DeprecationConfig, logger?: Logger): void;
@@ -555,6 +566,9 @@ export interface FeatureFlags {
     useLegacyMethods?: boolean;
 }
 
+// @public (undocumented)
+export type FieldNames<T> = keyof T;
+
 // @public
 export function generateWebhookSecret(bytes?: number): string;
 
@@ -576,15 +590,15 @@ export class HttpClient {
     // (undocumented)
     close(): Promise<void>;
     // (undocumented)
-    delete<T>(path: string, params?: RequestConfig['params'], headers?: RequestConfig['headers'], schema?: Schema<T>, context?: RequestConfig['context']): Promise<ApiResponse<T>>;
+    delete<T>(path: string, params?: RequestConfig['params'], headers?: RequestConfig['headers'], schema?: Schema<T>, context?: RequestConfig['context']): Promise<ApiResponse<T, Record<string, unknown>>>;
     // (undocumented)
-    get<T>(path: string, params?: RequestConfig['params'], headers?: RequestConfig['headers'], schema?: Schema<T>, context?: RequestConfig['context']): Promise<ApiResponse<T>>;
+    get<T>(path: string, params?: RequestConfig['params'], headers?: RequestConfig['headers'], schema?: Schema<T>, context?: RequestConfig['context']): Promise<ApiResponse<T, Record<string, unknown>>>;
     // (undocumented)
-    patch<T>(path: string, body?: unknown, headers?: RequestConfig['headers'], schema?: Schema<T>, context?: RequestConfig['context']): Promise<ApiResponse<T>>;
+    patch<T>(path: string, body?: unknown, headers?: RequestConfig['headers'], schema?: Schema<T>, context?: RequestConfig['context']): Promise<ApiResponse<T, Record<string, unknown>>>;
     // (undocumented)
-    post<T>(path: string, body?: unknown, headers?: RequestConfig['headers'], schema?: Schema<T>, context?: RequestConfig['context']): Promise<ApiResponse<T>>;
+    post<T>(path: string, body?: unknown, headers?: RequestConfig['headers'], schema?: Schema<T>, context?: RequestConfig['context']): Promise<ApiResponse<T, Record<string, unknown>>>;
     // (undocumented)
-    put<T>(path: string, body?: unknown, headers?: RequestConfig['headers'], schema?: Schema<T>, context?: RequestConfig['context']): Promise<ApiResponse<T>>;
+    put<T>(path: string, body?: unknown, headers?: RequestConfig['headers'], schema?: Schema<T>, context?: RequestConfig['context']): Promise<ApiResponse<T, Record<string, unknown>>>;
     // (undocumented)
     request<T>(config: RequestConfig<T>): Promise<ApiResponse<T>>;
     // (undocumented)
@@ -666,7 +680,7 @@ export const LEAD_FIELD_MAP: {
 
 // @public
 export class LeadQueryBuilder {
-    constructor(http: HttpClient, moduleName?: string, schema?: Schema<Lead>);
+    constructor(http: HttpClient, moduleName?: string, schema?: Schema<Lead>, transformRecord?: (record: Lead) => Lead);
     applyOptions(options?: LeadSearchOptions): this;
     execute(): Promise<Lead[]>;
     limit(perPage: number): this;
@@ -709,7 +723,7 @@ export const LeadSchema: Schema<{
 
 // @public
 export class LeadSearch {
-    constructor(http: HttpClient, moduleName?: string, schema?: Schema<Lead>);
+    constructor(http: HttpClient, moduleName?: string, schema?: Schema<Lead>, transformRecord?: (record: Lead) => Lead);
     // (undocumented)
     advanced(builder: LeadQueryBuilder): Promise<Lead[]>;
     // (undocumented)
@@ -749,6 +763,62 @@ export class LeadsModule extends BaseModule<Lead, CreateLead, UpdateLead> {
     readonly search: LeadSearch;
     // @deprecated
     updateLead(id: string, payload: UpdateLead): Promise<Lead>;
+}
+
+// @public
+export interface LegacyContact {
+    // (undocumented)
+    [key: string]: unknown;
+    // (undocumented)
+    email?: string;
+    // (undocumented)
+    first_name?: string;
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    last_name?: string;
+    // (undocumented)
+    mobile?: string;
+    // (undocumented)
+    phone?: string;
+}
+
+// @public
+export interface LegacyDeal {
+    // (undocumented)
+    [key: string]: unknown;
+    // (undocumented)
+    amount?: number;
+    // (undocumented)
+    closing_date?: string;
+    // (undocumented)
+    deal_name?: string;
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    stage?: string;
+}
+
+// @public
+export interface LegacyLead {
+    // (undocumented)
+    [key: string]: unknown;
+    // (undocumented)
+    company?: string;
+    // (undocumented)
+    email?: string;
+    // (undocumented)
+    first_name?: string;
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    last_name?: string;
+    // (undocumented)
+    lead_status?: string;
+    // (undocumented)
+    mobile?: string;
+    // (undocumented)
+    phone?: string;
 }
 
 // @public (undocumented)
@@ -851,6 +921,9 @@ export interface PaginationInfo {
     // (undocumented)
     perPage?: number;
 }
+
+// @public (undocumented)
+export type PartialUpdate<T> = Partial<T>;
 
 // @public (undocumented)
 export class PluginManager {
@@ -1587,6 +1660,15 @@ export interface ZohoRecord {
     // (undocumented)
     id: string;
 }
+
+// @public (undocumented)
+export type ZohoRecordEnvelope<TModule extends string, TData> = {
+    module: TModule;
+    data: TData;
+};
+
+// @public (undocumented)
+export type ZohoRecordUnion = ZohoRecordEnvelope<'Leads', Lead> | ZohoRecordEnvelope<'Contacts', Contact> | ZohoRecordEnvelope<'Deals', Deal>;
 
 // @public (undocumented)
 export type ZohoRegion = 'US' | 'EU' | 'IN' | 'AU' | 'CN' | 'JP';

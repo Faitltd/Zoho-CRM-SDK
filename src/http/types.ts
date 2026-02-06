@@ -13,10 +13,11 @@ export interface RequestConfig<T = unknown> {
   context?: Record<string, unknown>;
 }
 
-export interface ApiResponse<T> {
+export interface ApiResponse<T = unknown, M = Record<string, unknown>> {
   data: T;
   status: number;
   headers: Record<string, string>;
+  meta?: M;
 }
 
 export interface RawResponse {

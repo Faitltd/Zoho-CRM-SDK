@@ -20,3 +20,16 @@ export type {
   BulkWriteJobConfig,
   BulkWriteJobStatus
 } from './bulk';
+
+export type {
+  LegacyLead,
+  LegacyContact,
+  LegacyDeal,
+  CompatibleLead,
+  CompatibleContact,
+  CompatibleDeal,
+  FieldNames,
+  PartialUpdate,
+  ZohoRecordEnvelope,
+  ZohoRecordUnion
+} from './utils';
