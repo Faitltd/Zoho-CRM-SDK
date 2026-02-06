@@ -13,6 +13,7 @@ export const STABILITY = {
   leads: { level: 'stable', since: '0.1.0' },
   contacts: { level: 'stable', since: '0.1.0' },
   deals: { level: 'stable', since: '0.1.0' },
+  leadsSearch: { level: 'beta', since: '0.2.0', note: 'Builder-style search helpers for Leads.' },
   webhooks: { level: 'beta', since: '0.1.0', note: 'Beta: minor breaking changes may occur in minor releases.' },
   bulk: { level: 'beta', since: '0.1.0', note: 'Beta: minor breaking changes may occur in minor releases.' },
   experimental: { level: 'alpha', since: '0.1.0', note: 'Alpha: opt-in only, may change anytime.' }

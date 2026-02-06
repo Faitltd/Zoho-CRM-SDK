@@ -618,6 +618,20 @@ export const LEAD_FIELD_MAP: {
     readonly modifiedAt: "Modified_Time";
 };
 
+// @public
+export class LeadQueryBuilder {
+    constructor(http: HttpClient, moduleName?: string, schema?: Schema<Lead>);
+    applyOptions(options?: LeadSearchOptions): this;
+    execute(): Promise<Lead[]>;
+    limit(perPage: number): this;
+    orderBy(field: string, direction: 'asc' | 'desc'): this;
+    pageNumber(page: number): this;
+    perPageCount(perPage: number): this;
+    select(fields: string[]): this;
+    where(field: string, operator: string, value: unknown): this;
+    whereRaw(criteria: string): this;
+}
+
 // @public (undocumented)
 export const LeadSchema: Schema<{
     id: string;
@@ -648,9 +662,36 @@ export const LeadSchema: Schema<{
 }>;
 
 // @public
+export class LeadSearch {
+    constructor(http: HttpClient, moduleName?: string, schema?: Schema<Lead>);
+    // (undocumented)
+    advanced(builder: LeadQueryBuilder): Promise<Lead[]>;
+    // (undocumented)
+    byEmail(email: string, options?: LeadSearchOptions): Promise<Lead[]>;
+    // (undocumented)
+    byPhone(phone: string, options?: LeadSearchOptions): Promise<Lead[]>;
+}
+
+// @public (undocumented)
+export interface LeadSearchOptions {
+    // (undocumented)
+    fields?: string[];
+    // (undocumented)
+    page?: number;
+    // (undocumented)
+    perPage?: number;
+    // (undocumented)
+    sortBy?: string;
+    // (undocumented)
+    sortOrder?: 'asc' | 'desc';
+}
+
+// @public
 export class LeadsModule extends BaseModule<Lead, CreateLead, UpdateLead> {
     constructor(http: HttpClient);
     list(options?: ListOptions): Promise<Lead[]>;
+    query(options?: LeadSearchOptions): LeadQueryBuilder;
+    readonly search: LeadSearch;
 }
 
 // @public (undocumented)
@@ -958,6 +999,11 @@ export const STABILITY: {
     readonly deals: {
         readonly level: "stable";
         readonly since: "0.1.0";
+    };
+    readonly leadsSearch: {
+        readonly level: "beta";
+        readonly since: "0.2.0";
+        readonly note: "Builder-style search helpers for Leads.";
     };
     readonly webhooks: {
         readonly level: "beta";

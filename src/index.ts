@@ -69,6 +69,8 @@ export { DealsModule } from './modules/deals';
 export { WebhooksModule } from './modules/webhooks';
 export { generateWebhookSecret, signWebhookPayload, verifyWebhookSignature } from './webhooks/signature';
 export { BulkModule, iterateBulkRead } from './modules/bulk';
+export { LeadQueryBuilder, LeadSearch } from './modules/leads-query';
+export type { LeadSearchOptions } from './modules/leads-query';
 export type { BulkReadIteratorOptions } from './modules/bulk';
 export type { Lead, CreateLead, UpdateLead } from './types/leads';
 export type { Contact, CreateContact, UpdateContact } from './types/contacts';

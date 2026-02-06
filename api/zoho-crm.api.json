@@ -8152,6 +8152,582 @@
           ]
         },
         {
+          "kind": "Class",
+          "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder:class",
+          "docComment": "/**\n * Builder for Zoho CRM search queries.\n *\n * @stability\n *\n * beta\n *\n * @since\n *\n * 0.2.0\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class LeadQueryBuilder "
+            }
+          ],
+          "fileUrlPath": "temp/types/modules/leads-query.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "LeadQueryBuilder",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `LeadQueryBuilder` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(http: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "HttpClient",
+                  "canonicalReference": "@yourcompany/zoho-crm!HttpClient:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", moduleName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", schema?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Schema",
+                  "canonicalReference": "@yourcompany/zoho-crm!Schema:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Lead",
+                  "canonicalReference": "@yourcompany/zoho-crm!Lead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "http",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "moduleName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
+                },
+                {
+                  "parameterName": "schema",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 9
+                  },
+                  "isOptional": true
+                }
+              ]
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder#applyOptions:member(1)",
+              "docComment": "/**\n * Apply standard search options in one call.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "applyOptions(options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LeadSearchOptions",
+                  "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "this"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": true
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "applyOptions"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder#execute:member(1)",
+              "docComment": "/**\n * Execute the query and return matching leads.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "execute(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Lead",
+                  "canonicalReference": "@yourcompany/zoho-crm!Lead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "execute"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder#limit:member(1)",
+              "docComment": "/**\n * Set a limit (mapped to per_page in Zoho search endpoints).\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "limit(perPage: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "this"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "perPage",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "limit"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder#orderBy:member(1)",
+              "docComment": "/**\n * Set sorting for the query.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "orderBy(field: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", direction: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'asc' | 'desc'"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "this"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "field",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "direction",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "orderBy"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder#pageNumber:member(1)",
+              "docComment": "/**\n * Set page number for pagination.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "pageNumber(page: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "this"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "page",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "pageNumber"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder#perPageCount:member(1)",
+              "docComment": "/**\n * Set number of records per page.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "perPageCount(perPage: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "this"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "perPage",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "perPageCount"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder#select:member(1)",
+              "docComment": "/**\n * Select fields to return.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "select(fields: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "this"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "fields",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "select"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder#where:member(1)",
+              "docComment": "/**\n * Add a criteria clause, joined with AND.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "where(field: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", operator: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", value: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "this"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 8
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "field",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "operator",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "value",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "where"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder#whereRaw:member(1)",
+              "docComment": "/**\n * Provide a raw Zoho criteria string for advanced use cases.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "whereRaw(criteria: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "this"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "criteria",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "whereRaw"
+            }
+          ],
+          "implementsTokenRanges": []
+        },
+        {
           "kind": "Variable",
           "canonicalReference": "@yourcompany/zoho-crm!LeadSchema:var",
           "docComment": "",
@@ -8178,6 +8754,478 @@
             "startIndex": 1,
             "endIndex": 3
           }
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@yourcompany/zoho-crm!LeadSearch:class",
+          "docComment": "/**\n * Namespaced search helpers for Leads.\n *\n * @stability\n *\n * beta\n *\n * @since\n *\n * 0.2.0\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class LeadSearch "
+            }
+          ],
+          "fileUrlPath": "temp/types/modules/leads-query.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "LeadSearch",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadSearch:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `LeadSearch` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(http: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "HttpClient",
+                  "canonicalReference": "@yourcompany/zoho-crm!HttpClient:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", moduleName?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", schema?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Schema",
+                  "canonicalReference": "@yourcompany/zoho-crm!Schema:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Lead",
+                  "canonicalReference": "@yourcompany/zoho-crm!Lead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "http",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "moduleName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
+                },
+                {
+                  "parameterName": "schema",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 9
+                  },
+                  "isOptional": true
+                }
+              ]
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadSearch#advanced:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "advanced(builder: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LeadQueryBuilder",
+                  "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Lead",
+                  "canonicalReference": "@yourcompany/zoho-crm!Lead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "builder",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "advanced"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadSearch#byEmail:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "byEmail(email: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LeadSearchOptions",
+                  "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Lead",
+                  "canonicalReference": "@yourcompany/zoho-crm!Lead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "email",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "byEmail"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadSearch#byPhone:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "byPhone(phone: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LeadSearchOptions",
+                  "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Lead",
+                  "canonicalReference": "@yourcompany/zoho-crm!Lead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "phone",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "byPhone"
+            }
+          ],
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface LeadSearchOptions "
+            }
+          ],
+          "fileUrlPath": "temp/types/modules/leads-query.d.ts",
+          "releaseTag": "Public",
+          "name": "LeadSearchOptions",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions#fields:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "fields?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "fields",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions#page:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "page?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "page",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions#perPage:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "perPage?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "perPage",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions#sortBy:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "sortBy?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "sortBy",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions#sortOrder:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "sortOrder?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'asc' | 'desc'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "sortOrder",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Class",
@@ -8330,6 +9378,87 @@
               "isOptional": false,
               "isAbstract": false,
               "name": "list"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadsModule#query:member(1)",
+              "docComment": "/**\n * Start a builder-style search query.\n *\n * @stability\n *\n * beta\n *\n * @since\n *\n * 0.2.0\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "query(options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LeadSearchOptions",
+                  "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LeadQueryBuilder",
+                  "canonicalReference": "@yourcompany/zoho-crm!LeadQueryBuilder:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": true
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "query"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadsModule#search:member",
+              "docComment": "/**\n * Namespaced search helpers.\n *\n * @stability\n *\n * beta\n *\n * @since\n *\n * 0.2.0\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly search: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LeadSearch",
+                  "canonicalReference": "@yourcompany/zoho-crm!LeadSearch:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "search",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
             }
           ],
           "extendsTokenRange": {
@@ -11756,7 +12885,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    readonly auth: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly http: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly errors: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly leads: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly contacts: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly deals: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly webhooks: {\n        readonly level: \"beta\";\n        readonly since: \"0.1.0\";\n        readonly note: \"Beta: minor breaking changes may occur in minor releases.\";\n    };\n    readonly bulk: {\n        readonly level: \"beta\";\n        readonly since: \"0.1.0\";\n        readonly note: \"Beta: minor breaking changes may occur in minor releases.\";\n    };\n    readonly experimental: {\n        readonly level: \"alpha\";\n        readonly since: \"0.1.0\";\n        readonly note: \"Alpha: opt-in only, may change anytime.\";\n    };\n}"
+              "text": "{\n    readonly auth: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly http: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly errors: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly leads: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly contacts: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly deals: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly leadsSearch: {\n        readonly level: \"beta\";\n        readonly since: \"0.2.0\";\n        readonly note: \"Builder-style search helpers for Leads.\";\n    };\n    readonly webhooks: {\n        readonly level: \"beta\";\n        readonly since: \"0.1.0\";\n        readonly note: \"Beta: minor breaking changes may occur in minor releases.\";\n    };\n    readonly bulk: {\n        readonly level: \"beta\";\n        readonly since: \"0.1.0\";\n        readonly note: \"Beta: minor breaking changes may occur in minor releases.\";\n    };\n    readonly experimental: {\n        readonly level: \"alpha\";\n        readonly since: \"0.1.0\";\n        readonly note: \"Alpha: opt-in only, may change anytime.\";\n    };\n}"
             }
           ],
           "fileUrlPath": "temp/types/stability.d.ts",
