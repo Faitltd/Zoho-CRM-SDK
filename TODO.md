@@ -5,8 +5,8 @@
 - [x] Audit core implementation vs Prompts 4–9 (auth, HTTP client, CRUD, types, errors) and fill any gaps.
 - [~] Run unit tests; fix failures; confirm coverage targets.
 - [ ] Increase coverage to >=80% (current ~34% overall, ~60% in src).
-- [ ] Verify package exports and ESM/CJS build output.
-- [~] Update README/docs quickstart to match current API; add `.env.example`.
+- [x] Verify package exports and ESM/CJS build output.
+- [x] Update README/docs quickstart to match current API; add `.env.example`.
 - [ ] Security basics: redaction, HTTPS enforcement, webhook signature verification.
 
 ## P1 — Pre-release Polish
