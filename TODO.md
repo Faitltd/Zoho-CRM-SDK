@@ -7,7 +7,7 @@
 - [ ] Increase coverage to >=80% (current ~34% overall, ~60% in src).
 - [x] Verify package exports and ESM/CJS build output.
 - [x] Update README/docs quickstart to match current API; add `.env.example`.
-- [ ] Security basics: redaction, HTTPS enforcement, webhook signature verification.
+- [x] Security basics: redaction, HTTPS enforcement, webhook signature verification.
 
 ## P1 — Pre-release Polish
 - [ ] Market validation (Prompts 1–2): searches, 5–10 interviews, landing page with 50+ signups, decision gate.
