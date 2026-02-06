@@ -1,11 +1,11 @@
 import type { RateLimiterOptions } from '../rate-limiter';
 import { BulkModule, iterateBulkRead } from '../modules/bulk';
 import type { BulkReadIteratorOptions } from '../modules/bulk';
-import { createLimiter, BaseClient, type BaseClientConfig } from './base-client';
+import { createLimiter, BaseClient, type BaseClientInitConfig } from './base-client';
 
-export interface BulkClientConfig extends BaseClientConfig {
+export type BulkClientConfig = BaseClientInitConfig & {
   bulkDownloadRateLimit?: RateLimiterOptions | false;
-}
+};
 
 export class ZohoCRM extends BaseClient {
   readonly bulk: BulkModule;

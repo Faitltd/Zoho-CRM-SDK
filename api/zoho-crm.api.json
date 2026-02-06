@@ -1310,6 +1310,19 @@
                 },
                 {
                   "kind": "Content",
+                  "text": ", transformRecord?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RecordTransformer",
+                  "canonicalReference": "@yourcompany/zoho-crm!~RecordTransformer:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<TRecord>"
+                },
+                {
+                  "kind": "Content",
                   "text": ");"
                 }
               ],
@@ -1338,6 +1351,14 @@
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
                     "endIndex": 7
+                  },
+                  "isOptional": true
+                },
+                {
+                  "parameterName": "transformRecord",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 8,
+                    "endIndex": 10
                   },
                   "isOptional": true
                 }
@@ -1636,6 +1657,111 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
+                  "text": "list(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<TRecord[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "list"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!BaseModule#list:member(2)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "list(page: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", perPage?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<TRecord[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 2,
+              "parameters": [
+                {
+                  "parameterName": "page",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "perPage",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "list"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!BaseModule#list:member(3)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
                   "text": "list(options?: "
                 },
                 {
@@ -1668,7 +1794,7 @@
               },
               "releaseTag": "Public",
               "isProtected": false,
-              "overloadIndex": 1,
+              "overloadIndex": 3,
               "parameters": [
                 {
                   "parameterName": "options",
@@ -1828,6 +1954,41 @@
               "isAbstract": false
             },
             {
+              "kind": "Property",
+              "canonicalReference": "@yourcompany/zoho-crm!BaseModule#transformRecord:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected readonly transformRecord?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RecordTransformer",
+                  "canonicalReference": "@yourcompany/zoho-crm!~RecordTransformer:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<TRecord>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "transformRecord",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": false,
+              "isProtected": true,
+              "isAbstract": false
+            },
+            {
               "kind": "Method",
               "canonicalReference": "@yourcompany/zoho-crm!BaseModule#update:member(1)",
               "docComment": "",
@@ -1960,6 +2121,61 @@
             "startIndex": 1,
             "endIndex": 10
           }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@yourcompany/zoho-crm!buildCompatibilityReport:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function buildCompatibilityReport(options: "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    legacyConfigUsed?: boolean;\n    useLegacyFieldNames?: boolean;\n    featureFlags?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "FeatureFlags",
+              "canonicalReference": "@yourcompany/zoho-crm!FeatureFlags:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "CompatibilityReport",
+              "canonicalReference": "@yourcompany/zoho-crm!CompatibilityReport:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "temp/types/compat/compatibility.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "options",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "buildCompatibilityReport"
         },
         {
           "kind": "Interface",
@@ -3704,6 +3920,105 @@
           "implementsTokenRanges": []
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@yourcompany/zoho-crm!CompatibilityReport:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface CompatibilityReport "
+            }
+          ],
+          "fileUrlPath": "temp/types/compat/compatibility.d.ts",
+          "releaseTag": "Public",
+          "name": "CompatibilityReport",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!CompatibilityReport#errors:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "errors: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "errors",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!CompatibilityReport#recommendations:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "recommendations: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "recommendations",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!CompatibilityReport#warnings:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "warnings: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "warnings",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "Function",
           "canonicalReference": "@yourcompany/zoho-crm!configureDeprecations:function(1)",
           "docComment": "",
@@ -4292,7 +4607,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@yourcompany/zoho-crm!ContactsModule:class",
-          "docComment": "/**\n * Contacts module (stable).\n *\n * @stability\n *\n * stable\n *\n * @since\n *\n * 0.1.0\n */\n",
+          "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4361,6 +4676,15 @@
                 },
                 {
                   "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ContactsModuleOptions",
+                  "canonicalReference": "@yourcompany/zoho-crm!~ContactsModuleOptions:interface"
+                },
+                {
+                  "kind": "Content",
                   "text": ");"
                 }
               ],
@@ -4375,6 +4699,14 @@
                     "endIndex": 2
                   },
                   "isOptional": false
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
                 }
               ]
             }
@@ -4859,6 +5191,102 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@yourcompany/zoho-crm!createDeprecatedProxy:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function createDeprecatedProxy<T extends "
+            },
+            {
+              "kind": "Content",
+              "text": "object"
+            },
+            {
+              "kind": "Content",
+              "text": ">(target: "
+            },
+            {
+              "kind": "Content",
+              "text": "T"
+            },
+            {
+              "kind": "Content",
+              "text": ", map: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, "
+            },
+            {
+              "kind": "Reference",
+              "text": "DeprecatedProxyEntry",
+              "canonicalReference": "@yourcompany/zoho-crm!~DeprecatedProxyEntry:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "T"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "temp/types/compat/deprecated-proxy.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 10,
+            "endIndex": 11
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "target",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "map",
+              "parameterTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "isOptional": false
+            }
+          ],
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "createDeprecatedProxy"
         },
         {
           "kind": "Function",
@@ -5612,7 +6040,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@yourcompany/zoho-crm!DealsModule:class",
-          "docComment": "/**\n * Deals module (stable).\n *\n * @stability\n *\n * stable\n *\n * @since\n *\n * 0.1.0\n */\n",
+          "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5681,6 +6109,15 @@
                 },
                 {
                   "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DealsModuleOptions",
+                  "canonicalReference": "@yourcompany/zoho-crm!~DealsModuleOptions:interface"
+                },
+                {
+                  "kind": "Content",
                   "text": ");"
                 }
               ],
@@ -5695,6 +6132,14 @@
                     "endIndex": 2
                   },
                   "isOptional": false
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
                 }
               ]
             }
@@ -6031,6 +6476,176 @@
             "startIndex": 1,
             "endIndex": 3
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@yourcompany/zoho-crm!FeatureFlags:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeatureFlags "
+            }
+          ],
+          "fileUrlPath": "temp/types/feature-flags.d.ts",
+          "releaseTag": "Public",
+          "name": "FeatureFlags",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "IndexSignature",
+              "canonicalReference": "@yourcompany/zoho-crm!FeatureFlags:index(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "[key: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "]: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "key",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ]
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!FeatureFlags#advancedFilters:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "advancedFilters?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "advancedFilters",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!FeatureFlags#normalizeFieldNames:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "normalizeFieldNames?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "normalizeFieldNames",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!FeatureFlags#strictTypeValidation:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "strictTypeValidation?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "strictTypeValidation",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!FeatureFlags#useLegacyMethods:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "useLegacyMethods?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "useLegacyMethods",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Function",
@@ -9230,7 +9845,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@yourcompany/zoho-crm!LeadsModule:class",
-          "docComment": "/**\n * Leads module (stable).\n *\n * @stability\n *\n * stable\n *\n * @since\n *\n * 0.1.0\n */\n",
+          "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -9299,6 +9914,15 @@
                 },
                 {
                   "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LeadsModuleOptions",
+                  "canonicalReference": "@yourcompany/zoho-crm!~LeadsModuleOptions:interface"
+                },
+                {
+                  "kind": "Content",
                   "text": ");"
                 }
               ],
@@ -9313,22 +9937,286 @@
                     "endIndex": 2
                   },
                   "isOptional": false
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
                 }
               ]
             },
             {
               "kind": "Method",
-              "canonicalReference": "@yourcompany/zoho-crm!LeadsModule#list:member(1)",
-              "docComment": "/**\n * List leads with optional pagination and sorting.\n *\n * @stability\n *\n * stable\n *\n * @since\n *\n * 0.1.0\n *\n * @example\n * ```ts\n * const leads = await crm.leads.list({ page: 1, perPage: 10 });\n * ```\n *\n */\n",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadsModule#createLead:member(1)",
+              "docComment": "/**\n * Legacy v1 method name. Deprecated.\n *\n * @deprecated\n *\n * Use `create()` instead. Will be removed in v3.0.0.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "list(options?: "
+                  "text": "createLead(payload: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "ListOptions",
-                  "canonicalReference": "@yourcompany/zoho-crm!ListOptions:interface"
+                  "text": "CreateLead",
+                  "canonicalReference": "@yourcompany/zoho-crm!CreateLead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Lead",
+                  "canonicalReference": "@yourcompany/zoho-crm!Lead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "payload",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "createLead"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadsModule#deleteLead:member(1)",
+              "docComment": "/**\n * Legacy v1 method name. Deprecated.\n *\n * @deprecated\n *\n * Use `delete()` instead. Will be removed in v3.0.0.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "deleteLead(id: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "id",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "deleteLead"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadsModule#getLead:member(1)",
+              "docComment": "/**\n * Legacy v1 method name. Deprecated.\n *\n * @deprecated\n *\n * Use `get()` instead. Will be removed in v3.0.0.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getLead(id: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Lead",
+                  "canonicalReference": "@yourcompany/zoho-crm!Lead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "id",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "getLead"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadsModule#listLeads:member(1)",
+              "docComment": "/**\n * Legacy v1 method name. Deprecated.\n *\n * @deprecated\n *\n * Use `list()` instead. Will be removed in v3.0.0.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listLeads(page?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", perPage?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Lead",
+                  "canonicalReference": "@yourcompany/zoho-crm!Lead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "page",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": true
+                },
+                {
+                  "parameterName": "perPage",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": true
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "listLeads"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadsModule#listWithAdvancedFilters:member(1)",
+              "docComment": "/**\n * Advanced filter search with graceful fallback to list().\n *\n * @stability\n *\n * beta\n *\n * @since\n *\n * 0.2.0\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "listWithAdvancedFilters(options: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LeadSearchOptions",
+                  "canonicalReference": "@yourcompany/zoho-crm!LeadSearchOptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -9372,12 +10260,12 @@
                     "startIndex": 1,
                     "endIndex": 2
                   },
-                  "isOptional": true
+                  "isOptional": false
                 }
               ],
               "isOptional": false,
               "isAbstract": false,
-              "name": "list"
+              "name": "listWithAdvancedFilters"
             },
             {
               "kind": "Method",
@@ -9459,6 +10347,85 @@
               "isStatic": false,
               "isProtected": false,
               "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!LeadsModule#updateLead:member(1)",
+              "docComment": "/**\n * Legacy v1 method name. Deprecated.\n *\n * @deprecated\n *\n * Use `update()` instead. Will be removed in v3.0.0.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "updateLead(id: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", payload: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "UpdateLead",
+                  "canonicalReference": "@yourcompany/zoho-crm!UpdateLead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Lead",
+                  "canonicalReference": "@yourcompany/zoho-crm!Lead:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "id",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "payload",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "updateLead"
             }
           ],
           "extendsTokenRange": {
@@ -9466,6 +10433,41 @@
             "endIndex": 9
           },
           "implementsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@yourcompany/zoho-crm!LegacyZohoCRMConfig:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type LegacyZohoCRMConfig = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    client_id?: string;\n    client_secret?: string;\n    refresh_token?: string;\n    clientId?: string;\n    clientSecret?: string;\n    refreshToken?: string;\n    api_key?: string;\n    region?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ZohoRegion",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoRegion:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    useLegacyFieldNames?: boolean;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "temp/types/compat/legacy-config.d.ts",
+          "releaseTag": "Public",
+          "name": "LegacyZohoCRMConfig",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          }
         },
         {
           "kind": "Interface",
@@ -9944,6 +10946,169 @@
             "startIndex": 1,
             "endIndex": 5
           }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@yourcompany/zoho-crm!NormalizedLegacyConfig:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type NormalizedLegacyConfig<T> = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    config: T;\n    legacyDetected: boolean;\n    warnings: string[];\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "temp/types/compat/legacy-config.d.ts",
+          "releaseTag": "Public",
+          "name": "NormalizedLegacyConfig",
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@yourcompany/zoho-crm!normalizeLegacyConfig:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function normalizeLegacyConfig<T extends "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    auth?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ZohoAuth",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoAuth:class"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    region: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ZohoRegion",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoRegion:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ">(config: "
+            },
+            {
+              "kind": "Content",
+              "text": "T | ("
+            },
+            {
+              "kind": "Reference",
+              "text": "Omit",
+              "canonicalReference": "!Omit:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<T, 'auth' | 'region'> & "
+            },
+            {
+              "kind": "Reference",
+              "text": "LegacyZohoCRMConfig",
+              "canonicalReference": "@yourcompany/zoho-crm!LegacyZohoCRMConfig:type"
+            },
+            {
+              "kind": "Content",
+              "text": ")"
+            },
+            {
+              "kind": "Content",
+              "text": ", logger?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Logger",
+              "canonicalReference": "@yourcompany/zoho-crm!Logger:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "NormalizedLegacyConfig",
+              "canonicalReference": "@yourcompany/zoho-crm!NormalizedLegacyConfig:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<T>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "temp/types/compat/legacy-config.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 15,
+            "endIndex": 17
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "config",
+              "parameterTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 12
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "logger",
+              "parameterTypeTokenRange": {
+                "startIndex": 13,
+                "endIndex": 14
+              },
+              "isOptional": true
+            }
+          ],
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 6
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "normalizeLegacyConfig"
         },
         {
           "kind": "Function",
@@ -16658,8 +17823,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "ZohoCRMConfig",
-                  "canonicalReference": "@yourcompany/zoho-crm!ZohoCRMConfig:interface"
+                  "text": "ZohoCRMInitConfig",
+                  "canonicalReference": "@yourcompany/zoho-crm!~ZohoCRMInitConfig:type"
                 },
                 {
                   "kind": "Content",
@@ -16803,6 +17968,51 @@
               "isStatic": false,
               "isProtected": false,
               "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoCRM#checkCompatibility:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "checkCompatibility(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CompatibilityReport",
+                  "canonicalReference": "@yourcompany/zoho-crm!CompatibilityReport:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "checkCompatibility"
             },
             {
               "kind": "Method",
@@ -17002,6 +18212,68 @@
             },
             {
               "kind": "Property",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoCRM#featureFlags:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly featureFlags: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureFlags",
+                  "canonicalReference": "@yourcompany/zoho-crm!FeatureFlags:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "featureFlags",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoCRM#fieldNameStyle:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly fieldNameStyle: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FieldNameStyle",
+                  "canonicalReference": "@yourcompany/zoho-crm!~FieldNameStyle:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "fieldNameStyle",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
               "canonicalReference": "@yourcompany/zoho-crm!ZohoCRM#http:member",
               "docComment": "",
               "excerptTokens": [
@@ -17102,6 +18374,36 @@
               "isOptional": false,
               "releaseTag": "Public",
               "name": "leads",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoCRM#legacyConfigUsed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly legacyConfigUsed: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "legacyConfigUsed",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -17962,6 +19264,34 @@
             },
             {
               "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoCRMConfig#featureFlags:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "featureFlags?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FeatureFlags",
+                  "canonicalReference": "@yourcompany/zoho-crm!FeatureFlags:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "featureFlags",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "@yourcompany/zoho-crm!ZohoCRMConfig#http:member",
               "docComment": "",
               "excerptTokens": [
@@ -18256,6 +19586,33 @@
               "isOptional": true,
               "releaseTag": "Public",
               "name": "telemetry",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoCRMConfig#useLegacyFieldNames:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "useLegacyFieldNames?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "useLegacyFieldNames",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2

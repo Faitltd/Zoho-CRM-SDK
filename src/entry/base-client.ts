@@ -9,10 +9,13 @@ import { RateLimiter, type RateLimiterOptions } from '../rate-limiter';
 import { normalizeValidationOptions, type NormalizedValidationOptions, type ValidationOptions } from '../validation';
 import { normalizeAudit, type AuditConfig, type NormalizedAuditConfig } from '../audit';
 import { configureDeprecations, type DeprecationConfig } from '../deprecation';
-import { type ExperimentalFeatures, isFeatureEnabled } from '../feature-flags';
+import { type ExperimentalFeatures, getFeatureFlag, isFeatureEnabled, type FeatureFlags, applyValidationFeatureFlags } from '../feature-flags';
 import { normalizeTelemetry, type Telemetry } from '../telemetry';
 import { PluginManager, type ZohoCRMPlugin } from '../plugins';
 import type { ZohoCRM } from '../zoho-crm';
+import { normalizeLegacyConfig, type LegacyZohoCRMConfig } from '../compat/legacy-config';
+import { buildCompatibilityReport, type CompatibilityReport } from '../compat/compatibility';
+import type { FieldNameStyle } from '../utils/field-mapping';
 
 export interface BaseClientConfig {
   auth: ZohoAuth;
@@ -30,7 +33,11 @@ export interface BaseClientConfig {
   deprecations?: DeprecationConfig;
   experimentalFeatures?: ExperimentalFeatures;
   telemetry?: Telemetry;
+  featureFlags?: FeatureFlags;
+  useLegacyFieldNames?: boolean;
 }
+
+export type BaseClientInitConfig = BaseClientConfig | (Omit<BaseClientConfig, 'auth' | 'region'> & LegacyZohoCRMConfig);
 
 export class BaseClient {
   readonly auth: ZohoAuth;
@@ -44,53 +51,66 @@ export class BaseClient {
   readonly audit?: NormalizedAuditConfig;
   readonly plugins: PluginManager;
   readonly region: ZohoRegion;
+  readonly featureFlags: FeatureFlags;
+  readonly fieldNameStyle: FieldNameStyle;
+  readonly legacyConfigUsed: boolean;
   readonly experimentalFeatures: ExperimentalFeatures;
   private readonly limiters: RateLimiter[] = [];
   private readonly extensions = new Set<string>();
 
-  constructor(config: BaseClientConfig) {
+  constructor(config: BaseClientInitConfig) {
     const rawLogger = config.logger;
     this.logger = normalizeLogger(rawLogger, config.logRedaction);
-    this.metrics = normalizeMetrics(config.metrics);
-    this.telemetry = normalizeTelemetry(config.telemetry);
-    this.validation = normalizeValidationOptions(config.validation);
-    this.profiler = normalizeProfiler(config.profiler);
-    this.audit = normalizeAudit(config.audit);
-    this.region = config.region;
-    this.experimentalFeatures = config.experimentalFeatures ?? {};
+    const normalized = normalizeLegacyConfig(config as BaseClientInitConfig, this.logger);
+    const normalizedConfig = normalized.config as BaseClientConfig;
 
-    this.auth = config.auth;
+    this.legacyConfigUsed = normalized.legacyDetected;
+    this.metrics = normalizeMetrics(normalizedConfig.metrics);
+    this.telemetry = normalizeTelemetry(normalizedConfig.telemetry);
+    this.featureFlags = normalizedConfig.featureFlags ?? {};
+    const validationConfig = applyValidationFeatureFlags(normalizedConfig.validation, this.featureFlags);
+    this.validation = normalizeValidationOptions(validationConfig);
+    this.profiler = normalizeProfiler(normalizedConfig.profiler);
+    this.audit = normalizeAudit(normalizedConfig.audit);
+    this.region = normalizedConfig.region;
+    this.experimentalFeatures = normalizedConfig.experimentalFeatures ?? {};
+    this.fieldNameStyle =
+      normalizedConfig.useLegacyFieldNames === false || getFeatureFlag(this.featureFlags, 'normalizeFieldNames')
+        ? 'camel'
+        : 'raw';
+
+    this.auth = normalizedConfig.auth;
     this.auth.setLogger(rawLogger ?? this.logger, config.logRedaction);
     this.auth.setMetrics(this.metrics);
-    this.auth.setValidation(config.validation);
+    this.auth.setValidation(validationConfig);
     this.auth.setProfiler(this.profiler);
     this.plugins = new PluginManager(this.logger);
-    configureDeprecations(config.deprecations, rawLogger ?? this.logger);
+    configureDeprecations(normalizedConfig.deprecations, rawLogger ?? this.logger);
     this.auth.addTokenRefreshListener?.((token: AccessToken, raw: ZohoTokenResponse, cacheKey?: string) =>
       this.plugins.runOnTokenRefresh({ token, raw, cacheKey, region: this.region })
     );
 
-    this.rateLimiter = createLimiter(config.rateLimit, this.logger, this.metrics, 'api');
+    this.rateLimiter = createLimiter(normalizedConfig.rateLimit, this.logger, this.metrics, 'api');
     if (this.rateLimiter) {
       this.limiters.push(this.rateLimiter);
     }
 
     this.http = new HttpClient(
-      config.auth,
-      config.region,
-      config.retry,
+      normalizedConfig.auth,
+      normalizedConfig.region,
+      normalizedConfig.retry,
       this.logger,
       this.rateLimiter,
       this.metrics,
       this.validation,
       this.profiler,
-      config.http,
+      normalizedConfig.http,
       this.audit,
       this.plugins
     );
 
-    if (config.plugins && config.plugins.length > 0) {
-      for (const plugin of config.plugins) {
+    if (normalizedConfig.plugins && normalizedConfig.plugins.length > 0) {
+      for (const plugin of normalizedConfig.plugins) {
         void this.use(plugin);
       }
     }
@@ -165,6 +185,14 @@ export class BaseClient {
     return isFeatureEnabled(this.experimentalFeatures, name);
   }
 
+  async checkCompatibility(): Promise<CompatibilityReport> {
+    return buildCompatibilityReport({
+      legacyConfigUsed: this.legacyConfigUsed,
+      useLegacyFieldNames: this.fieldNameStyle === 'raw',
+      featureFlags: this.featureFlags
+    });
+  }
+
   registerModule<T>(name: string, module: T): void {
     if (this.isReservedExtension(name)) {
       throw new Error(`Cannot register module "${name}" because it conflicts with core SDK keys.`);
@@ -212,7 +240,11 @@ export class BaseClient {
       'bulkDownloadLimiter',
       'audit',
       'plugins',
-      'experimentalFeatures'
+      'experimentalFeatures',
+      'featureFlags',
+      'fieldNameStyle',
+      'legacyConfigUsed',
+      'telemetry'
     ]);
     return reserved.has(name);
   }

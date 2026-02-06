@@ -24,7 +24,7 @@ export type { AuditConfig, AuditEvent, AuditLogger, AuditRedactionConfig } from 
 export { createJsonAuditLogger } from './audit';
 export type { DeprecationConfig, DeprecationWarning } from './deprecation';
 export { configureDeprecations, warnDeprecated } from './deprecation';
-export type { ExperimentalFeatures } from './feature-flags';
+export type { ExperimentalFeatures, FeatureFlags } from './feature-flags';
 export type {
   ZohoCRMPlugin,
   ZohoCRMPluginHooks,
@@ -60,6 +60,11 @@ export type { StabilityLevel, StabilityInfo } from './stability';
 export { STABILITY, getStability } from './stability';
 export type { Telemetry, TelemetryEvent } from './telemetry';
 export { normalizeTelemetry, noopTelemetry } from './telemetry';
+export type { LegacyZohoCRMConfig, NormalizedLegacyConfig } from './compat/legacy-config';
+export { normalizeLegacyConfig } from './compat/legacy-config';
+export type { CompatibilityReport } from './compat/compatibility';
+export { buildCompatibilityReport } from './compat/compatibility';
+export { createDeprecatedProxy } from './compat/deprecated-proxy';
 
 export { BaseModule } from './modules/base';
 export type { ListOptions, GetOptions } from './modules/base';

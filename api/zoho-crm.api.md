@@ -97,7 +97,7 @@ export class AuthError extends ZohoError {
 
 // @public (undocumented)
 export class BaseModule<TRecord, TCreate, TUpdate> {
-    constructor(http: HttpClient, moduleName: string, recordSchema?: Schema<TRecord>);
+    constructor(http: HttpClient, moduleName: string, recordSchema?: Schema<TRecord>, transformRecord?: RecordTransformer<TRecord>);
     // (undocumented)
     protected readonly actionResponseSchema: Schema<unknown>;
     create(payload: TCreate): Promise<TRecord>;
@@ -112,6 +112,10 @@ export class BaseModule<TRecord, TCreate, TUpdate> {
     // (undocumented)
     protected readonly http: HttpClient;
     // (undocumented)
+    list(): Promise<TRecord[]>;
+    // (undocumented)
+    list(page: number, perPage?: number): Promise<TRecord[]>;
+    // (undocumented)
     list(options?: ListOptions): Promise<TRecord[]>;
     // (undocumented)
     protected readonly moduleName: string;
@@ -121,6 +125,10 @@ export class BaseModule<TRecord, TCreate, TUpdate> {
     protected recordPath(id: string): string;
     // (undocumented)
     protected readonly recordSchema?: Schema<TRecord>;
+    // Warning: (ae-forgotten-export) The symbol "RecordTransformer" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    protected readonly transformRecord?: RecordTransformer<TRecord>;
     // (undocumented)
     update(id: string, payload: TUpdate): Promise<TRecord>;
 }
@@ -129,6 +137,13 @@ export class BaseModule<TRecord, TCreate, TUpdate> {
 //
 // @public (undocumented)
 export type BeforeRequestHook = (ctx: BeforeRequestContext) => void | PluginResponseOverride | Promise<void | PluginResponseOverride>;
+
+// @public (undocumented)
+export function buildCompatibilityReport(options: {
+    legacyConfigUsed?: boolean;
+    useLegacyFieldNames?: boolean;
+    featureFlags?: FeatureFlags;
+}): CompatibilityReport;
 
 // @public (undocumented)
 export interface BulkCallback {
@@ -261,6 +276,16 @@ export class ClientClosedError extends ZohoError {
 }
 
 // @public (undocumented)
+export interface CompatibilityReport {
+    // (undocumented)
+    errors: string[];
+    // (undocumented)
+    recommendations: string[];
+    // (undocumented)
+    warnings: string[];
+}
+
+// @public (undocumented)
 export function configureDeprecations(config?: DeprecationConfig, logger?: Logger): void;
 
 // @public (undocumented)
@@ -341,9 +366,10 @@ export const ContactSchema: Schema<{
     Modified_Time: string | undefined;
 }>;
 
-// @public
+// @public (undocumented)
 export class ContactsModule extends BaseModule<Contact, CreateContact, UpdateContact> {
-    constructor(http: HttpClient);
+    // Warning: (ae-forgotten-export) The symbol "ContactsModuleOptions" needs to be exported by the entry point index.d.ts
+    constructor(http: HttpClient, options?: ContactsModuleOptions);
 }
 
 // @public (undocumented)
@@ -383,6 +409,11 @@ export interface CreateDeal {
     // (undocumented)
     stage?: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "DeprecatedProxyEntry" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function createDeprecatedProxy<T extends object>(target: T, map: Record<string, DeprecatedProxyEntry>): T;
 
 // @public (undocumented)
 export function createJsonAuditLogger(destination?: NodeJS.WritableStream): AuditLogger;
@@ -472,9 +503,10 @@ export const DealSchema: Schema<{
     Modified_Time: string | undefined;
 }>;
 
-// @public
+// @public (undocumented)
 export class DealsModule extends BaseModule<Deal, CreateDeal, UpdateDeal> {
-    constructor(http: HttpClient);
+    // Warning: (ae-forgotten-export) The symbol "DealsModuleOptions" needs to be exported by the entry point index.d.ts
+    constructor(http: HttpClient, options?: DealsModuleOptions);
 }
 
 // @public (undocumented)
@@ -508,6 +540,20 @@ export type ErrorHook = (ctx: ErrorContext) => void | Promise<void>;
 
 // @public (undocumented)
 export type ExperimentalFeatures = Record<string, boolean>;
+
+// @public (undocumented)
+export interface FeatureFlags {
+    // (undocumented)
+    [key: string]: boolean | undefined;
+    // (undocumented)
+    advancedFilters?: boolean;
+    // (undocumented)
+    normalizeFieldNames?: boolean;
+    // (undocumented)
+    strictTypeValidation?: boolean;
+    // (undocumented)
+    useLegacyMethods?: boolean;
+}
 
 // @public
 export function generateWebhookSecret(bytes?: number): string;
@@ -686,13 +732,37 @@ export interface LeadSearchOptions {
     sortOrder?: 'asc' | 'desc';
 }
 
-// @public
+// @public (undocumented)
 export class LeadsModule extends BaseModule<Lead, CreateLead, UpdateLead> {
-    constructor(http: HttpClient);
-    list(options?: ListOptions): Promise<Lead[]>;
+    // Warning: (ae-forgotten-export) The symbol "LeadsModuleOptions" needs to be exported by the entry point index.d.ts
+    constructor(http: HttpClient, options?: LeadsModuleOptions);
+    // @deprecated
+    createLead(payload: CreateLead): Promise<Lead>;
+    // @deprecated
+    deleteLead(id: string): Promise<void>;
+    // @deprecated
+    getLead(id: string): Promise<Lead>;
+    // @deprecated
+    listLeads(page?: number, perPage?: number): Promise<Lead[]>;
+    listWithAdvancedFilters(options: LeadSearchOptions): Promise<Lead[]>;
     query(options?: LeadSearchOptions): LeadQueryBuilder;
     readonly search: LeadSearch;
+    // @deprecated
+    updateLead(id: string, payload: UpdateLead): Promise<Lead>;
 }
+
+// @public (undocumented)
+export type LegacyZohoCRMConfig = {
+    client_id?: string;
+    client_secret?: string;
+    refresh_token?: string;
+    clientId?: string;
+    clientSecret?: string;
+    refreshToken?: string;
+    api_key?: string;
+    region?: ZohoRegion;
+    useLegacyFieldNames?: boolean;
+};
 
 // @public (undocumented)
 export interface ListOptions {
@@ -732,6 +802,19 @@ export interface Metrics {
 
 // @public (undocumented)
 export const noopTelemetry: Required<Telemetry>;
+
+// @public (undocumented)
+export type NormalizedLegacyConfig<T> = {
+    config: T;
+    legacyDetected: boolean;
+    warnings: string[];
+};
+
+// @public (undocumented)
+export function normalizeLegacyConfig<T extends {
+    auth?: ZohoAuth;
+    region: ZohoRegion;
+}>(config: T | (Omit<T, 'auth' | 'region'> & LegacyZohoCRMConfig), logger?: Logger): NormalizedLegacyConfig<T>;
 
 // @public (undocumented)
 export function normalizeTelemetry(telemetry?: Telemetry): Required<Telemetry>;
@@ -1304,7 +1387,8 @@ export class ZohoAuth {
 
 // @public (undocumented)
 export class ZohoCRM {
-    constructor(config: ZohoCRMConfig);
+    // Warning: (ae-forgotten-export) The symbol "ZohoCRMInitConfig" needs to be exported by the entry point index.d.ts
+    constructor(config: ZohoCRMInitConfig);
     // (undocumented)
     readonly audit?: NormalizedAuditConfig;
     // (undocumented)
@@ -1313,6 +1397,8 @@ export class ZohoCRM {
     readonly bulk: BulkModule;
     // (undocumented)
     readonly bulkDownloadLimiter?: RateLimiter;
+    // (undocumented)
+    checkCompatibility(): Promise<CompatibilityReport>;
     // (undocumented)
     clearCachedState(): void;
     // (undocumented)
@@ -1326,11 +1412,19 @@ export class ZohoCRM {
     // (undocumented)
     readonly experimentalFeatures: ExperimentalFeatures;
     // (undocumented)
+    readonly featureFlags: FeatureFlags;
+    // Warning: (ae-forgotten-export) The symbol "FieldNameStyle" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    readonly fieldNameStyle: FieldNameStyle;
+    // (undocumented)
     readonly http: HttpClient;
     // (undocumented)
     isExperimentalFeatureEnabled(name: string): boolean;
     // (undocumented)
     readonly leads: LeadsModule;
+    // (undocumented)
+    readonly legacyConfigUsed: boolean;
     // (undocumented)
     listPlugins(): ZohoCRMPlugin[];
     // (undocumented)
@@ -1378,6 +1472,8 @@ export interface ZohoCRMConfig {
     // (undocumented)
     experimentalFeatures?: ExperimentalFeatures;
     // (undocumented)
+    featureFlags?: FeatureFlags;
+    // (undocumented)
     http?: HttpClientOptions;
     // (undocumented)
     logger?: Logger;
@@ -1397,6 +1493,8 @@ export interface ZohoCRMConfig {
     retry?: Partial<RetryConfig>;
     // (undocumented)
     telemetry?: Telemetry;
+    // (undocumented)
+    useLegacyFieldNames?: boolean;
     // (undocumented)
     validation?: ValidationOptions;
 }

@@ -19,24 +19,40 @@ type ZohoListResponse<T> = {
   data?: T[];
 };
 
+export type RecordTransformer<TRecord> = (record: TRecord) => TRecord;
+
 export class BaseModule<TRecord, TCreate, TUpdate> {
   protected readonly http: HttpClient;
   protected readonly moduleName: string;
   protected readonly recordSchema?: Schema<TRecord>;
   protected readonly dataResponseSchema?: Schema<ZohoListResponse<TRecord>>;
   protected readonly actionResponseSchema: Schema<unknown> = ZohoActionResponseSchema;
+  protected readonly transformRecord?: RecordTransformer<TRecord>;
 
-  constructor(http: HttpClient, moduleName: string, recordSchema?: Schema<TRecord>) {
+  constructor(
+    http: HttpClient,
+    moduleName: string,
+    recordSchema?: Schema<TRecord>,
+    transformRecord?: RecordTransformer<TRecord>
+  ) {
     this.http = http;
     assertPathSegment(moduleName, 'moduleName');
     this.moduleName = moduleName;
     this.recordSchema = recordSchema;
+    this.transformRecord = transformRecord;
     this.dataResponseSchema = recordSchema
       ? (ZohoDataResponseSchema(recordSchema) as Schema<ZohoListResponse<TRecord>>)
       : undefined;
   }
 
-  async list(options?: ListOptions): Promise<TRecord[]> {
+  async list(): Promise<TRecord[]>;
+  async list(page: number, perPage?: number): Promise<TRecord[]>;
+  async list(options?: ListOptions): Promise<TRecord[]>;
+  async list(pageOrOptions?: number | ListOptions, perPage?: number): Promise<TRecord[]> {
+    const options =
+      typeof pageOrOptions === 'number'
+        ? { page: pageOrOptions, perPage }
+        : (pageOrOptions ?? undefined);
     // Map ergonomic options to Zoho's expected query parameter names.
     if (options?.fields) {
       assertOptionalStringArray(options.fields, 'fields');
@@ -58,7 +74,12 @@ export class BaseModule<TRecord, TCreate, TUpdate> {
       this.dataResponseSchema
     );
 
-    return response.data.data ?? [];
+    const records = response.data.data ?? [];
+    const transformer = this.transformRecord;
+    if (transformer) {
+      return records.map((record) => transformer(record));
+    }
+    return records;
   }
 
   async get(id: string, options?: GetOptions): Promise<TRecord> {
@@ -83,7 +104,7 @@ export class BaseModule<TRecord, TCreate, TUpdate> {
       });
     }
 
-    return record;
+    return this.transformRecord ? this.transformRecord(record) : record;
   }
 
   /**
@@ -107,7 +128,7 @@ export class BaseModule<TRecord, TCreate, TUpdate> {
       throw new Error(`Zoho create response for ${this.moduleName} was missing data.`);
     }
 
-    return record;
+    return this.transformRecord ? this.transformRecord(record) : record;
   }
 
   async update(id: string, payload: TUpdate): Promise<TRecord> {
@@ -126,7 +147,7 @@ export class BaseModule<TRecord, TCreate, TUpdate> {
       throw new Error(`Zoho update response for ${this.moduleName} was missing data.`);
     }
 
-    return record;
+    return this.transformRecord ? this.transformRecord(record) : record;
   }
 
   async delete(id: string): Promise<void> {

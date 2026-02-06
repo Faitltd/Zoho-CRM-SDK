@@ -16,8 +16,18 @@ import { BulkModule } from './modules/bulk';
 import { assertEnum } from './utils/input-validation';
 import { normalizeAudit, type AuditConfig, type NormalizedAuditConfig } from './audit';
 import { configureDeprecations, type DeprecationConfig } from './deprecation';
-import { type ExperimentalFeatures, isFeatureEnabled } from './feature-flags';
+import {
+  applyValidationFeatureFlags,
+  getFeatureFlag,
+  type ExperimentalFeatures,
+  type FeatureFlags,
+  isFeatureEnabled
+} from './feature-flags';
 import { PluginManager, type ZohoCRMPlugin } from './plugins';
+import { normalizeLegacyConfig, type LegacyZohoCRMConfig } from './compat/legacy-config';
+import { buildCompatibilityReport, type CompatibilityReport } from './compat/compatibility';
+import { createDeprecatedProxy } from './compat/deprecated-proxy';
+import type { FieldNameStyle } from './utils/field-mapping';
 
 export interface ZohoCRMConfig {
   auth: ZohoAuth;
@@ -44,7 +54,13 @@ export interface ZohoCRMConfig {
   experimentalFeatures?: ExperimentalFeatures;
   // Optional telemetry sink for opt-in experimental usage signals.
   telemetry?: Telemetry;
+  // Feature flags for gradual behavior changes.
+  featureFlags?: FeatureFlags;
+  // Return raw Zoho field names (legacy). Set false to return camelCase for mapped fields.
+  useLegacyFieldNames?: boolean;
 }
+
+export type ZohoCRMInitConfig = ZohoCRMConfig | (Omit<ZohoCRMConfig, 'auth' | 'region'> & LegacyZohoCRMConfig);
 
 export class ZohoCRM {
   readonly auth: ZohoAuth;
@@ -58,6 +74,7 @@ export class ZohoCRM {
   readonly logger: Required<Logger>;
   readonly metrics: Required<Metrics>;
   readonly telemetry: Required<Telemetry>;
+  readonly featureFlags: FeatureFlags;
   readonly validation: ReturnType<typeof normalizeValidationOptions>;
   readonly profiler: NormalizedProfiler;
   readonly rateLimiter?: RateLimiter;
@@ -65,6 +82,8 @@ export class ZohoCRM {
   readonly audit?: NormalizedAuditConfig;
   readonly plugins: PluginManager;
   readonly experimentalFeatures: ExperimentalFeatures;
+  readonly fieldNameStyle: FieldNameStyle;
+  readonly legacyConfigUsed: boolean;
   private readonly extensions = new Set<string>();
 
   /**
@@ -76,28 +95,38 @@ export class ZohoCRM {
    * const leads = await crm.leads.list({ page: 1, perPage: 10 });
    * ```
    */
-  constructor(config: ZohoCRMConfig) {
-    assertEnum(config.region, 'region', ['US', 'EU', 'IN', 'AU', 'CN', 'JP']);
+  constructor(config: ZohoCRMInitConfig) {
     const rawLogger = config.logger;
     this.logger = normalizeLogger(rawLogger, config.logRedaction);
-    this.metrics = normalizeMetrics(config.metrics);
-    this.telemetry = normalizeTelemetry(config.telemetry);
-    this.validation = normalizeValidationOptions(config.validation);
-    this.profiler = normalizeProfiler(config.profiler);
-    this.audit = normalizeAudit(config.audit);
-    this.region = config.region;
-    this.experimentalFeatures = config.experimentalFeatures ?? {};
-    this.auth = config.auth;
+    const normalized = normalizeLegacyConfig(config as ZohoCRMInitConfig, this.logger);
+    const normalizedConfig = normalized.config as ZohoCRMConfig;
+
+    assertEnum(normalizedConfig.region, 'region', ['US', 'EU', 'IN', 'AU', 'CN', 'JP']);
+    this.legacyConfigUsed = normalized.legacyDetected;
+    this.metrics = normalizeMetrics(normalizedConfig.metrics);
+    this.telemetry = normalizeTelemetry(normalizedConfig.telemetry);
+    this.featureFlags = normalizedConfig.featureFlags ?? {};
+    const validationConfig = applyValidationFeatureFlags(normalizedConfig.validation, this.featureFlags);
+    this.validation = normalizeValidationOptions(validationConfig);
+    this.profiler = normalizeProfiler(normalizedConfig.profiler);
+    this.audit = normalizeAudit(normalizedConfig.audit);
+    this.region = normalizedConfig.region;
+    this.experimentalFeatures = normalizedConfig.experimentalFeatures ?? {};
+    this.fieldNameStyle =
+      normalizedConfig.useLegacyFieldNames === false || getFeatureFlag(this.featureFlags, 'normalizeFieldNames')
+        ? 'camel'
+        : 'raw';
+    this.auth = normalizedConfig.auth;
     this.auth.setLogger(rawLogger ?? this.logger, config.logRedaction);
     this.auth.setMetrics(this.metrics);
-    this.auth.setValidation(config.validation);
+    this.auth.setValidation(validationConfig);
     this.auth.setProfiler(this.profiler);
     this.plugins = new PluginManager(this.logger);
-    configureDeprecations(config.deprecations, rawLogger ?? this.logger);
+    configureDeprecations(normalizedConfig.deprecations, rawLogger ?? this.logger);
     this.auth.addTokenRefreshListener?.((token: AccessToken, raw: ZohoTokenResponse, cacheKey?: string) =>
       this.plugins.runOnTokenRefresh({ token, raw, cacheKey, region: this.region })
     );
-    const rateLimitOptions = config.rateLimit ? config.rateLimit : undefined;
+    const rateLimitOptions = normalizedConfig.rateLimit ? normalizedConfig.rateLimit : undefined;
     this.rateLimiter = rateLimitOptions
       ? new RateLimiter({
           ...rateLimitOptions,
@@ -115,9 +144,11 @@ export class ZohoCRM {
           }
         })
       : undefined;
-    const bulkRateLimitOptions = config.bulkDownloadRateLimit ? config.bulkDownloadRateLimit : undefined;
+    const bulkRateLimitOptions = normalizedConfig.bulkDownloadRateLimit
+      ? normalizedConfig.bulkDownloadRateLimit
+      : undefined;
     this.bulkDownloadLimiter =
-      config.bulkDownloadRateLimit === false
+      normalizedConfig.bulkDownloadRateLimit === false
         ? undefined
         : new RateLimiter({
             maxRequestsPerInterval: 10,
@@ -137,28 +168,67 @@ export class ZohoCRM {
             }
           });
     this.http = new HttpClient(
-      config.auth,
-      config.region,
-      config.retry,
+      normalizedConfig.auth,
+      normalizedConfig.region,
+      normalizedConfig.retry,
       this.logger,
       this.rateLimiter,
       this.metrics,
       this.validation,
       this.profiler,
-      config.http,
+      normalizedConfig.http,
       this.audit,
       this.plugins
     );
 
     // Expose module instances for ergonomic access.
-    this.leads = new LeadsModule(this.http);
-    this.contacts = new ContactsModule(this.http);
-    this.deals = new DealsModule(this.http);
+    const leadsModule = new LeadsModule(this.http, {
+      fieldNameStyle: this.fieldNameStyle,
+      useLegacyMethods: getFeatureFlag(this.featureFlags, 'useLegacyMethods', true),
+      supportsAdvancedFilters: getFeatureFlag(this.featureFlags, 'advancedFilters')
+    });
+    const legacyLeadProxy = getFeatureFlag(this.featureFlags, 'useLegacyMethods', true)
+      ? createDeprecatedProxy(leadsModule, {
+          createLead: {
+            target: 'create',
+            message: 'createLead() is deprecated.',
+            alternative: 'leads.create()',
+            removalVersion: '3.0.0'
+          },
+          getLead: {
+            target: 'get',
+            message: 'getLead() is deprecated.',
+            alternative: 'leads.get()',
+            removalVersion: '3.0.0'
+          },
+          listLeads: {
+            target: 'list',
+            message: 'listLeads() is deprecated.',
+            alternative: 'leads.list()',
+            removalVersion: '3.0.0'
+          },
+          updateLead: {
+            target: 'update',
+            message: 'updateLead() is deprecated.',
+            alternative: 'leads.update()',
+            removalVersion: '3.0.0'
+          },
+          deleteLead: {
+            target: 'delete',
+            message: 'deleteLead() is deprecated.',
+            alternative: 'leads.delete()',
+            removalVersion: '3.0.0'
+          }
+        })
+      : leadsModule;
+    this.leads = legacyLeadProxy;
+    this.contacts = new ContactsModule(this.http, { fieldNameStyle: this.fieldNameStyle });
+    this.deals = new DealsModule(this.http, { fieldNameStyle: this.fieldNameStyle });
     this.webhooks = new WebhooksModule(this.http);
     this.bulk = new BulkModule(this.http, this.bulkDownloadLimiter);
 
-    if (config.plugins && config.plugins.length > 0) {
-      for (const plugin of config.plugins) {
+    if (normalizedConfig.plugins && normalizedConfig.plugins.length > 0) {
+      for (const plugin of normalizedConfig.plugins) {
         void this.use(plugin);
       }
     }
@@ -230,6 +300,14 @@ export class ZohoCRM {
     return isFeatureEnabled(this.experimentalFeatures, name);
   }
 
+  async checkCompatibility(): Promise<CompatibilityReport> {
+    return buildCompatibilityReport({
+      legacyConfigUsed: this.legacyConfigUsed,
+      useLegacyFieldNames: this.fieldNameStyle === 'raw',
+      featureFlags: this.featureFlags
+    });
+  }
+
   registerModule<T>(name: string, module: T): void {
     if (this.isReservedExtension(name)) {
       throw new Error(`Cannot register module "${name}" because it conflicts with core SDK keys.`);
@@ -277,7 +355,11 @@ export class ZohoCRM {
       'bulkDownloadLimiter',
       'audit',
       'plugins',
-      'experimentalFeatures'
+      'experimentalFeatures',
+      'featureFlags',
+      'fieldNameStyle',
+      'legacyConfigUsed',
+      'telemetry'
     ]);
     return reserved.has(name);
   }
