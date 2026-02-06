@@ -39,6 +39,8 @@ main().catch((error) => {
 });
 ```
 
+Copy `.env.example` to `.env` and fill in your OAuth credentials before running examples.
+
 ## Features
 
 - TypeScript-first types with ergonomic camelCase fields
