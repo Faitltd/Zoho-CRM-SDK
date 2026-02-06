@@ -1,13 +1,13 @@
 # Compatibility Matrix
 
-This document tracks SDK compatibility with Zoho CRM API versions and notable changes.
+This document tracks SDK compatibility with Zoho CRM API versions, Node.js, and TypeScript.
 
 ## Supported Versions
 
-| SDK Version | Zoho API v2 | Zoho API v8 | Notes |
-|-------------|-------------|-------------|-------|
-| 0.1.x       | Yes         | Partial     | CRUD v2, Webhooks/Bulk v8 |
-| 0.2.x       | Yes         | Partial     | Add modules, expand types |
+| SDK Version | Zoho API v2 | Zoho API v8 | Node.js | TypeScript | Notes |
+|-------------|-------------|-------------|---------|------------|-------|
+| 0.1.x       | Yes         | Partial     | 18, 20, 21 | 5.x | CRUD v2, Webhooks/Bulk v8 |
+| 0.2.x       | Yes         | Partial     | 18, 20, 21 | 5.x | Add modules, expand types |
 
 ## Known Zoho API Changes
 

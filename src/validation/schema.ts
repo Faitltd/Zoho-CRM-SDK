@@ -21,17 +21,15 @@ type ValidationContext = {
   schemaName: string;
 };
 
-const ok = <T>(data: T, ctx: ValidationContext): ValidationResult<T> => ({
-  success: true,
-  data,
-  unknownFields: ctx.unknownFields.length > 0 ? ctx.unknownFields : undefined
-});
+const ok = <T>(data: T, ctx: ValidationContext): ValidationResult<T> => {
+  const extra = ctx.unknownFields.length > 0 ? { unknownFields: ctx.unknownFields } : {};
+  return { success: true, data, ...extra };
+};
 
-const fail = <T>(ctx: ValidationContext): ValidationResult<T> => ({
-  success: false,
-  issues: ctx.issues,
-  unknownFields: ctx.unknownFields.length > 0 ? ctx.unknownFields : undefined
-});
+const fail = <T>(ctx: ValidationContext): ValidationResult<T> => {
+  const extra = ctx.unknownFields.length > 0 ? { unknownFields: ctx.unknownFields } : {};
+  return { success: false, issues: ctx.issues, ...extra };
+};
 
 const createIssue = (path: string[], expected: string, actual: unknown): ValidationIssue => ({
   path: formatPath(path),

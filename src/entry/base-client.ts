@@ -1,5 +1,5 @@
 import type { ZohoAuth } from '../auth/zoho-auth';
-import type { ZohoRegion } from '../auth/types';
+import type { AccessToken, ZohoRegion, ZohoTokenResponse } from '../auth/types';
 import { HttpClient } from '../http/http-client';
 import type { HttpClientOptions, RetryConfig } from '../http/types';
 import { normalizeLogger, type Logger, type RedactionConfig } from '../logger';
@@ -55,7 +55,7 @@ export class BaseClient {
     this.auth.setValidation(config.validation);
     this.auth.setProfiler(this.profiler);
     this.plugins = new PluginManager(this.logger);
-    this.auth.addTokenRefreshListener?.((token, raw, cacheKey) =>
+    this.auth.addTokenRefreshListener?.((token: AccessToken, raw: ZohoTokenResponse, cacheKey?: string) =>
       this.plugins.runOnTokenRefresh({ token, raw, cacheKey, region: this.region })
     );
 
@@ -131,7 +131,7 @@ export class BaseClient {
   }
 
   async removePlugin(name: string): Promise<void> {
-    const plugin = this.plugins.list().find((entry) => entry.name === name);
+    const plugin = this.plugins.list().find((entry: ZohoCRMPlugin) => entry.name === name);
     if (!plugin) {
       return;
     }
@@ -214,11 +214,11 @@ export function createLimiter(
 
   return new RateLimiter({
     ...options,
-    onQueueChange: (size) => {
+    onQueueChange: (size: number) => {
       metrics.gauge('sdk.rate_limiter.queue_depth', size, { scope });
       options.onQueueChange?.(size);
     },
-    onWarning: ({ queueSize, maxQueue }) => {
+    onWarning: ({ queueSize, maxQueue }: { queueSize: number; maxQueue: number }) => {
       logger.warn('Rate limiter queue nearing capacity.', {
         queueSize,
         maxQueue,

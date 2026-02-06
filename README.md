@@ -102,6 +102,8 @@ process.on('SIGTERM', async () => {
 - Bundle size: `docs/bundle-size.md`
 - Security: `docs/security.md`
 - Compliance: `docs/compliance.md`
+- Versioning: `docs/versioning.md`
+- Compatibility: `docs/compatibility-matrix.md`
 - Plugins: `docs/plugins.md`
 - Integrations: `docs/integrations/README.md`
 - Examples: `examples/`

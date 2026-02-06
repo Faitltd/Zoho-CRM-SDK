@@ -68,15 +68,20 @@ export function normalizeAudit(config?: AuditConfig | false): NormalizedAuditCon
     config.logger ??
     createJsonAuditLogger(destination);
 
-  return {
+  const normalized: NormalizedAuditConfig = {
     logger,
-    contextProvider: config.contextProvider,
     redact: {
       redactFields: config.redact?.redactFields ?? DEFAULT_REDACT_FIELDS,
       maskFields: config.redact?.maskFields ?? DEFAULT_MASK_FIELDS,
       hashFields: config.redact?.hashFields ?? DEFAULT_HASH_FIELDS
     }
   };
+
+  if (config.contextProvider) {
+    normalized.contextProvider = config.contextProvider;
+  }
+
+  return normalized;
 }
 
 export function createJsonAuditLogger(destination?: NodeJS.WritableStream): AuditLogger {

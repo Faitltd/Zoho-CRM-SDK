@@ -1102,12 +1102,13 @@ function parseRetryAfter(headers: Record<string, string>): number | undefined {
 }
 
 function toNodeStream(body: UndiciBody): NodeJS.ReadableStream {
+  const webStream = body as unknown as ReadableStream;
   if (
     typeof (Readable as typeof Readable & { fromWeb?: unknown }).fromWeb === 'function' &&
-    typeof (body as ReadableStream).getReader === 'function'
+    typeof webStream.getReader === 'function'
   ) {
     return (Readable as typeof Readable & { fromWeb: (stream: ReadableStream) => NodeJS.ReadableStream }).fromWeb(
-      body as ReadableStream
+      webStream
     );
   }
 

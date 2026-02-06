@@ -287,8 +287,9 @@ export class ZohoAuth {
 
       return token;
     } catch (error) {
+      const authError = error instanceof AuthError ? error : undefined;
       endSpan(this.profiler, span, {
-        status: error instanceof AuthError ? error.statusCode : undefined,
+        status: authError?.statusCode,
         error: error instanceof Error ? error.name : 'UnknownError'
       });
       if (error instanceof AuthError || error instanceof SchemaMismatchError) {

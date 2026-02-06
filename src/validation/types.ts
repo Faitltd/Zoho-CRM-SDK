@@ -47,11 +47,16 @@ export function normalizeValidationOptions(
   const mode = enabled ? (options.mode ?? (development ? 'permissive' : 'strict')) : 'off';
   const warnUnknownFields = options.warnUnknownFields ?? development;
 
-  return {
+  const normalized: NormalizedValidationOptions = {
     enabled,
     mode,
     warnUnknownFields,
-    exportUnknownFields: options.exportUnknownFields,
     development
   };
+
+  if (options.exportUnknownFields) {
+    normalized.exportUnknownFields = options.exportUnknownFields;
+  }
+
+  return normalized;
 }

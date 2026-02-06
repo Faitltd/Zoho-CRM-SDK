@@ -1,5 +1,5 @@
 import type { ZohoAuth } from './auth/zoho-auth';
-import type { ZohoRegion } from './auth/types';
+import type { AccessToken, ZohoRegion, ZohoTokenResponse } from './auth/types';
 import type { HttpClientOptions, RetryConfig } from './http/types';
 import { HttpClient } from './http/http-client';
 import { normalizeLogger, type Logger, type RedactionConfig } from './logger';
@@ -80,44 +80,46 @@ export class ZohoCRM {
     this.auth.setValidation(config.validation);
     this.auth.setProfiler(this.profiler);
     this.plugins = new PluginManager(this.logger);
-    this.auth.addTokenRefreshListener?.((token, raw, cacheKey) =>
+    this.auth.addTokenRefreshListener?.((token: AccessToken, raw: ZohoTokenResponse, cacheKey?: string) =>
       this.plugins.runOnTokenRefresh({ token, raw, cacheKey, region: this.region })
     );
-    this.rateLimiter = config.rateLimit
+    const rateLimitOptions = config.rateLimit ? config.rateLimit : undefined;
+    this.rateLimiter = rateLimitOptions
       ? new RateLimiter({
-          ...config.rateLimit,
-          onQueueChange: (size) => {
+          ...rateLimitOptions,
+          onQueueChange: (size: number) => {
             this.metrics.gauge('sdk.rate_limiter.queue_depth', size, { scope: 'api' });
-            config.rateLimit?.onQueueChange?.(size);
+            rateLimitOptions?.onQueueChange?.(size);
           },
-          onWarning: ({ queueSize, maxQueue }) => {
+          onWarning: ({ queueSize, maxQueue }: { queueSize: number; maxQueue: number }) => {
             this.logger.warn('Rate limiter queue nearing capacity.', {
               queueSize,
               maxQueue,
               scope: 'api'
             });
-            config.rateLimit?.onWarning?.({ queueSize, maxQueue });
+            rateLimitOptions?.onWarning?.({ queueSize, maxQueue });
           }
         })
       : undefined;
+    const bulkRateLimitOptions = config.bulkDownloadRateLimit ? config.bulkDownloadRateLimit : undefined;
     this.bulkDownloadLimiter =
       config.bulkDownloadRateLimit === false
         ? undefined
         : new RateLimiter({
             maxRequestsPerInterval: 10,
             intervalMs: 60_000,
-            ...config.bulkDownloadRateLimit,
-            onQueueChange: (size) => {
+            ...bulkRateLimitOptions,
+            onQueueChange: (size: number) => {
               this.metrics.gauge('sdk.rate_limiter.queue_depth', size, { scope: 'bulk' });
-              config.bulkDownloadRateLimit?.onQueueChange?.(size);
+              bulkRateLimitOptions?.onQueueChange?.(size);
             },
-            onWarning: ({ queueSize, maxQueue }) => {
+            onWarning: ({ queueSize, maxQueue }: { queueSize: number; maxQueue: number }) => {
               this.logger.warn('Bulk download limiter queue nearing capacity.', {
                 queueSize,
                 maxQueue,
                 scope: 'bulk'
               });
-              config.bulkDownloadRateLimit?.onWarning?.({ queueSize, maxQueue });
+              bulkRateLimitOptions?.onWarning?.({ queueSize, maxQueue });
             }
           });
     this.http = new HttpClient(
@@ -191,7 +193,7 @@ export class ZohoCRM {
   }
 
   async removePlugin(name: string): Promise<void> {
-    const plugin = this.plugins.list().find((entry) => entry.name === name);
+    const plugin = this.plugins.list().find((entry: ZohoCRMPlugin) => entry.name === name);
     if (!plugin) {
       return;
     }

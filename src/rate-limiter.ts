@@ -53,7 +53,12 @@ export class RateLimiter {
     }
 
     return new Promise<T>((resolve, reject) => {
-      this.queue.push({ fn, resolve, reject, enqueuedAt: Date.now() });
+      this.queue.push({
+        fn: fn as () => Promise<unknown>,
+        resolve: resolve as (value: unknown) => void,
+        reject,
+        enqueuedAt: Date.now()
+      });
       this.emitQueueChange();
       this.maybeWarn();
       this.process();
@@ -149,18 +154,25 @@ export class RateLimiter {
     const now = Date.now();
     this.trim(now);
 
-    if (this.timestamps.length < this.maxRequests) {
+    if (this.timestamps.length < this.maxRequests || this.timestamps.length === 0) {
       return 0;
     }
 
     const earliest = this.timestamps[0];
+    if (earliest === undefined) {
+      return 0;
+    }
     const nextAllowed = earliest + this.intervalMs;
     return Math.max(0, nextAllowed - now);
   }
 
   private trim(now: number) {
     const cutoff = now - this.intervalMs;
-    while (this.timestamps.length > 0 && this.timestamps[0] <= cutoff) {
+    while (this.timestamps.length > 0) {
+      const earliest = this.timestamps[0];
+      if (earliest === undefined || earliest > cutoff) {
+        break;
+      }
       this.timestamps.shift();
     }
   }

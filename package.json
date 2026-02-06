@@ -52,15 +52,27 @@
   ],
   "sideEffects": false,
   "scripts": {
+    "api:prepare": "tsc -p tsconfig.api.json",
+    "api:extract": "npm run api:prepare && api-extractor run --local",
+    "api:baseline": "npm run api:extract && node scripts/semver/update-api-baseline.cjs",
     "bundle:size": "node scripts/size/bundle-size.cjs",
     "bundle:compare": "node scripts/size/compare-bundle.cjs",
-    "bundle:baseline": "node scripts/size/update-baseline.cjs"
+    "bundle:baseline": "node scripts/size/update-baseline.cjs",
+    "release": "standard-version",
+    "release:beta:major": "npm version premajor --preid=beta",
+    "release:beta:minor": "npm version preminor --preid=beta",
+    "release:beta:patch": "npm version prepatch --preid=beta",
+    "semver:check": "node scripts/semver/verify-version.cjs"
   },
   "dependencies": {
     "undici": "^6.21.0"
   },
   "devDependencies": {
-    "esbuild": "^0.25.0"
+    "@microsoft/api-extractor": "^7.43.0",
+    "@types/node": "^20.11.30",
+    "esbuild": "^0.25.0",
+    "standard-version": "^9.5.0",
+    "typescript": "^5.7.3"
   },
   "keywords": [
     "Node",

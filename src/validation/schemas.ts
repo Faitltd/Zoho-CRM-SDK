@@ -17,7 +17,7 @@ export const OAuthTokenResponseSchema = named(
 export const ZohoRecordSchema = named(
   object(
     {
-      id: optional(string()),
+      id: string(),
       createdTime: optional(string()),
       modifiedTime: optional(string()),
       Created_Time: optional(string()),
@@ -31,7 +31,7 @@ export const ZohoRecordSchema = named(
 export const LeadSchema = named(
   object(
     {
-      id: optional(string()),
+      id: string(),
       firstName: optional(string()),
       lastName: optional(string()),
       company: optional(string()),
@@ -65,7 +65,7 @@ export const LeadSchema = named(
 export const ContactSchema = named(
   object(
     {
-      id: optional(string()),
+      id: string(),
       firstName: optional(string()),
       lastName: optional(string()),
       email: optional(string()),
@@ -97,13 +97,13 @@ export const ContactSchema = named(
 export const DealSchema = named(
   object(
     {
-      id: optional(string()),
+      id: string(),
       name: optional(string()),
       stage: optional(string()),
       amount: optional(number()),
       closingDate: optional(string()),
       accountName: optional(string()),
-      owner: optional(unknown()),
+      owner: optional(string()),
       createdAt: optional(string()),
       modifiedAt: optional(string()),
       Deal_Name: optional(string()),
@@ -111,7 +111,7 @@ export const DealSchema = named(
       Amount: optional(number()),
       Closing_Date: optional(string()),
       Account_Name: optional(string()),
-      Owner: optional(unknown()),
+      Owner: optional(string()),
       Created_Time: optional(string()),
       Modified_Time: optional(string())
     },
@@ -140,7 +140,7 @@ export const WebhookConfigSchema = named(
 export const WebhookResponseSchema = named(
   object(
     {
-      id: optional(string()),
+      id: string(),
       name: optional(string()),
       url: optional(string()),
       module: optional(string()),
