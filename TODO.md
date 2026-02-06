@@ -3,7 +3,7 @@
 ## P0 — Start Now (Release Blockers)
 - [x] Tooling & CI baseline: add build/lint/test scripts + configs (tsup, vitest, biome) and confirm workflows run.
 - [x] Audit core implementation vs Prompts 4–9 (auth, HTTP client, CRUD, types, errors) and fill any gaps.
-- [~] Run unit tests; fix failures; confirm coverage targets.
+- [x] Run unit tests; fix failures; confirm coverage targets.
 - [ ] Increase coverage to >=80% (current ~65% overall, ~60% in src).
 - [x] Verify package exports and ESM/CJS build output.
 - [x] Update README/docs quickstart to match current API; add `.env.example`.
