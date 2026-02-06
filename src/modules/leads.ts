@@ -3,6 +3,12 @@ import type { CreateLead, Lead, UpdateLead } from '../types/leads';
 import { LeadSchema } from '../validation';
 import { BaseModule, type ListOptions } from './base';
 
+/**
+ * Leads module (stable).
+ *
+ * @stability stable
+ * @since 0.1.0
+ */
 export class LeadsModule extends BaseModule<Lead, CreateLead, UpdateLead> {
   constructor(http: HttpClient) {
     super(http, 'Leads', LeadSchema);
@@ -10,6 +16,9 @@ export class LeadsModule extends BaseModule<Lead, CreateLead, UpdateLead> {
 
   /**
    * List leads with optional pagination and sorting.
+   *
+   * @stability stable
+   * @since 0.1.0
    *
    * @example
    * ```ts

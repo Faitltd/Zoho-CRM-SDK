@@ -131,47 +131,17 @@
           "syntaxKind": "block"
         },
         {
-          "tagName": "@betaDocumentation",
-          "syntaxKind": "modifier"
-        },
-        {
-          "tagName": "@internalRemarks",
+          "tagName": "@stability",
           "syntaxKind": "block"
         },
         {
-          "tagName": "@preapproved",
-          "syntaxKind": "modifier"
+          "tagName": "@since",
+          "syntaxKind": "block"
         }
       ],
       "supportForTags": {
-        "@alpha": true,
-        "@beta": true,
-        "@defaultValue": true,
-        "@decorator": true,
-        "@deprecated": true,
-        "@eventProperty": true,
-        "@example": true,
-        "@experimental": true,
-        "@inheritDoc": true,
-        "@internal": true,
-        "@label": true,
-        "@link": true,
-        "@override": true,
-        "@packageDocumentation": true,
-        "@param": true,
-        "@privateRemarks": true,
-        "@public": true,
-        "@readonly": true,
-        "@remarks": true,
-        "@returns": true,
-        "@sealed": true,
-        "@see": true,
-        "@throws": true,
-        "@typeParam": true,
-        "@virtual": true,
-        "@betaDocumentation": true,
-        "@internalRemarks": true,
-        "@preapproved": true
+        "@stability": true,
+        "@since": true
       },
       "reportUnsupportedHtmlElements": false
     }
@@ -1411,7 +1381,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@yourcompany/zoho-crm!BaseModule#create:member(1)",
-              "docComment": "",
+              "docComment": "/**\n * Create a record in the module.\n *\n * @stability\n *\n * stable\n *\n * @since\n *\n * 0.1.0\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2066,7 +2036,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@yourcompany/zoho-crm!BulkModule:class",
-          "docComment": "",
+          "docComment": "/**\n * Bulk operations module (beta).\n *\n * @stability\n *\n * beta\n *\n * @since\n *\n * 0.1.0\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4322,7 +4292,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@yourcompany/zoho-crm!ContactsModule:class",
-          "docComment": "",
+          "docComment": "/**\n * Contacts module (stable).\n *\n * @stability\n *\n * stable\n *\n * @since\n *\n * 0.1.0\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5642,7 +5612,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@yourcompany/zoho-crm!DealsModule:class",
-          "docComment": "",
+          "docComment": "/**\n * Deals module (stable).\n *\n * @stability\n *\n * stable\n *\n * @since\n *\n * 0.1.0\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -6151,6 +6121,57 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@yourcompany/zoho-crm!getStability:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getStability(name: "
+            },
+            {
+              "kind": "Content",
+              "text": "keyof typeof "
+            },
+            {
+              "kind": "Reference",
+              "text": "STABILITY",
+              "canonicalReference": "@yourcompany/zoho-crm!STABILITY:var"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "StabilityInfo",
+              "canonicalReference": "@yourcompany/zoho-crm!StabilityInfo:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "temp/types/stability.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 4,
+            "endIndex": 5
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "name",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "getStability"
         },
         {
           "kind": "Class",
@@ -8161,7 +8182,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@yourcompany/zoho-crm!LeadsModule:class",
-          "docComment": "",
+          "docComment": "/**\n * Leads module (stable).\n *\n * @stability\n *\n * stable\n *\n * @since\n *\n * 0.1.0\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -8250,7 +8271,7 @@
             {
               "kind": "Method",
               "canonicalReference": "@yourcompany/zoho-crm!LeadsModule#list:member(1)",
-              "docComment": "/**\n * List leads with optional pagination and sorting.\n *\n * @example\n * ```ts\n * const leads = await crm.leads.list({ page: 1, perPage: 10 });\n * ```\n *\n */\n",
+              "docComment": "/**\n * List leads with optional pagination and sorting.\n *\n * @stability\n *\n * stable\n *\n * @since\n *\n * 0.1.0\n *\n * @example\n * ```ts\n * const leads = await crm.leads.list({ page: 1, perPage: 10 });\n * ```\n *\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -8757,6 +8778,103 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@yourcompany/zoho-crm!noopTelemetry:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "noopTelemetry: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Required",
+              "canonicalReference": "!Required:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "Telemetry",
+              "canonicalReference": "@yourcompany/zoho-crm!Telemetry:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            }
+          ],
+          "fileUrlPath": "temp/types/telemetry.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "noopTelemetry",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@yourcompany/zoho-crm!normalizeTelemetry:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function normalizeTelemetry(telemetry?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Telemetry",
+              "canonicalReference": "@yourcompany/zoho-crm!Telemetry:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Required",
+              "canonicalReference": "!Required:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "Telemetry",
+              "canonicalReference": "@yourcompany/zoho-crm!Telemetry:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "temp/types/telemetry.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 7
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "telemetry",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": true
+            }
+          ],
+          "name": "normalizeTelemetry"
         },
         {
           "kind": "Class",
@@ -11628,6 +11746,286 @@
           "name": "signWebhookPayload"
         },
         {
+          "kind": "Variable",
+          "canonicalReference": "@yourcompany/zoho-crm!STABILITY:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "STABILITY: "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    readonly auth: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly http: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly errors: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly leads: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly contacts: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly deals: {\n        readonly level: \"stable\";\n        readonly since: \"0.1.0\";\n    };\n    readonly webhooks: {\n        readonly level: \"beta\";\n        readonly since: \"0.1.0\";\n        readonly note: \"Beta: minor breaking changes may occur in minor releases.\";\n    };\n    readonly bulk: {\n        readonly level: \"beta\";\n        readonly since: \"0.1.0\";\n        readonly note: \"Beta: minor breaking changes may occur in minor releases.\";\n    };\n    readonly experimental: {\n        readonly level: \"alpha\";\n        readonly since: \"0.1.0\";\n        readonly note: \"Alpha: opt-in only, may change anytime.\";\n    };\n}"
+            }
+          ],
+          "fileUrlPath": "temp/types/stability.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "STABILITY",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@yourcompany/zoho-crm!StabilityInfo:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface StabilityInfo "
+            }
+          ],
+          "fileUrlPath": "temp/types/stability.d.ts",
+          "releaseTag": "Public",
+          "name": "StabilityInfo",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!StabilityInfo#level:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "level: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StabilityLevel",
+                  "canonicalReference": "@yourcompany/zoho-crm!StabilityLevel:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "level",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!StabilityInfo#note:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "note?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "note",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!StabilityInfo#since:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "since: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "since",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@yourcompany/zoho-crm!StabilityLevel:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type StabilityLevel = "
+            },
+            {
+              "kind": "Content",
+              "text": "'stable' | 'beta' | 'alpha' | 'deprecated'"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "temp/types/stability.d.ts",
+          "releaseTag": "Public",
+          "name": "StabilityLevel",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@yourcompany/zoho-crm!Telemetry:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface Telemetry "
+            }
+          ],
+          "fileUrlPath": "temp/types/telemetry.d.ts",
+          "releaseTag": "Public",
+          "name": "Telemetry",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!Telemetry#track:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "track?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(event: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TelemetryEvent",
+                  "canonicalReference": "@yourcompany/zoho-crm!TelemetryEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ") => void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "track",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@yourcompany/zoho-crm!TelemetryEvent:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TelemetryEvent "
+            }
+          ],
+          "fileUrlPath": "temp/types/telemetry.d.ts",
+          "releaseTag": "Public",
+          "name": "TelemetryEvent",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!TelemetryEvent#name:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!TelemetryEvent#properties:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "properties?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string, unknown>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "properties",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@yourcompany/zoho-crm!TokenRefreshHook:type",
           "docComment": "",
@@ -14014,7 +14412,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@yourcompany/zoho-crm!WebhooksModule:class",
-          "docComment": "",
+          "docComment": "/**\n * Webhooks module (beta).\n *\n * @stability\n *\n * beta\n *\n * @since\n *\n * 0.1.0\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -16047,6 +16445,50 @@
               "name": "removePlugin"
             },
             {
+              "kind": "Property",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoCRM#telemetry:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly telemetry: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Required",
+                  "canonicalReference": "!Required:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Telemetry",
+                  "canonicalReference": "@yourcompany/zoho-crm!Telemetry:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "telemetry",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
               "kind": "Method",
               "canonicalReference": "@yourcompany/zoho-crm!ZohoCRM#unregisterExtension:member(1)",
               "docComment": "",
@@ -16660,6 +17102,34 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 5
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@yourcompany/zoho-crm!ZohoCRMConfig#telemetry:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "telemetry?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Telemetry",
+                  "canonicalReference": "@yourcompany/zoho-crm!Telemetry:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "telemetry",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
               }
             },
             {

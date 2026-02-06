@@ -19,6 +19,13 @@ type WebhookListResponse = {
   webhooks?: WebhookResponse[];
 };
 
+/**
+ * Webhooks module (beta).
+ *
+ * @stability beta
+ * @since 0.1.0
+ */
+
 export class WebhooksModule {
   private readonly http: HttpClient;
 

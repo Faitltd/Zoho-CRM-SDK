@@ -35,6 +35,12 @@ export interface BulkReadIteratorOptions {
   maxWaitMs?: number;
 }
 
+/**
+ * Bulk operations module (beta).
+ *
+ * @stability beta
+ * @since 0.1.0
+ */
 export class BulkModule {
   private readonly http: HttpClient;
   private readonly downloadLimiter?: RateLimiter;

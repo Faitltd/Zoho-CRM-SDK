@@ -100,7 +100,6 @@ export class BaseModule<TRecord, TCreate, TUpdate> {
     constructor(http: HttpClient, moduleName: string, recordSchema?: Schema<TRecord>);
     // (undocumented)
     protected readonly actionResponseSchema: Schema<unknown>;
-    // (undocumented)
     create(payload: TCreate): Promise<TRecord>;
     // Warning: (ae-forgotten-export) The symbol "ZohoListResponse" needs to be exported by the entry point index.d.ts
     //
@@ -139,7 +138,7 @@ export interface BulkCallback {
     url: string;
 }
 
-// @public (undocumented)
+// @public
 export class BulkModule {
     constructor(http: HttpClient, downloadLimiter?: RateLimiter);
     // (undocumented)
@@ -342,7 +341,7 @@ export const ContactSchema: Schema<{
     Modified_Time: string | undefined;
 }>;
 
-// @public (undocumented)
+// @public
 export class ContactsModule extends BaseModule<Contact, CreateContact, UpdateContact> {
     constructor(http: HttpClient);
 }
@@ -473,7 +472,7 @@ export const DealSchema: Schema<{
     Modified_Time: string | undefined;
 }>;
 
-// @public (undocumented)
+// @public
 export class DealsModule extends BaseModule<Deal, CreateDeal, UpdateDeal> {
     constructor(http: HttpClient);
 }
@@ -518,6 +517,9 @@ export interface GetOptions {
     // (undocumented)
     fields?: string[];
 }
+
+// @public (undocumented)
+export function getStability(name: keyof typeof STABILITY): StabilityInfo;
 
 // @public (undocumented)
 export class HttpClient {
@@ -645,7 +647,7 @@ export const LeadSchema: Schema<{
     Modified_Time: string | undefined;
 }>;
 
-// @public (undocumented)
+// @public
 export class LeadsModule extends BaseModule<Lead, CreateLead, UpdateLead> {
     constructor(http: HttpClient);
     list(options?: ListOptions): Promise<Lead[]>;
@@ -686,6 +688,12 @@ export interface Metrics {
     // (undocumented)
     timing?: (name: string, durationMs: number, meta?: Record<string, unknown>) => void;
 }
+
+// @public (undocumented)
+export const noopTelemetry: Required<Telemetry>;
+
+// @public (undocumented)
+export function normalizeTelemetry(telemetry?: Telemetry): Required<Telemetry>;
 
 // @public (undocumented)
 export class NotFoundError extends ZohoError {
@@ -926,6 +934,76 @@ export class SchemaMismatchError extends ZohoError {
 export function signWebhookPayload(payload: string | Buffer, secret: string, options?: WebhookSignatureOptions): string;
 
 // @public (undocumented)
+export const STABILITY: {
+    readonly auth: {
+        readonly level: "stable";
+        readonly since: "0.1.0";
+    };
+    readonly http: {
+        readonly level: "stable";
+        readonly since: "0.1.0";
+    };
+    readonly errors: {
+        readonly level: "stable";
+        readonly since: "0.1.0";
+    };
+    readonly leads: {
+        readonly level: "stable";
+        readonly since: "0.1.0";
+    };
+    readonly contacts: {
+        readonly level: "stable";
+        readonly since: "0.1.0";
+    };
+    readonly deals: {
+        readonly level: "stable";
+        readonly since: "0.1.0";
+    };
+    readonly webhooks: {
+        readonly level: "beta";
+        readonly since: "0.1.0";
+        readonly note: "Beta: minor breaking changes may occur in minor releases.";
+    };
+    readonly bulk: {
+        readonly level: "beta";
+        readonly since: "0.1.0";
+        readonly note: "Beta: minor breaking changes may occur in minor releases.";
+    };
+    readonly experimental: {
+        readonly level: "alpha";
+        readonly since: "0.1.0";
+        readonly note: "Alpha: opt-in only, may change anytime.";
+    };
+};
+
+// @public (undocumented)
+export interface StabilityInfo {
+    // (undocumented)
+    level: StabilityLevel;
+    // (undocumented)
+    note?: string;
+    // (undocumented)
+    since: string;
+}
+
+// @public (undocumented)
+export type StabilityLevel = 'stable' | 'beta' | 'alpha' | 'deprecated';
+
+// @public (undocumented)
+export interface Telemetry {
+    // (undocumented)
+    track?: (event: TelemetryEvent) => void;
+}
+
+// @public (undocumented)
+export interface TelemetryEvent {
+    // (undocumented)
+    name: string;
+    // (undocumented)
+    properties?: Record<string, unknown>;
+}
+
+// @public (undocumented)
 export type TokenRefreshHook = (ctx: TokenRefreshContext) => void | Promise<void>;
 
 // @public (undocumented)
@@ -1126,7 +1204,7 @@ export interface WebhookResponse extends ZohoRecord {
     url?: string;
 }
 
-// @public (undocumented)
+// @public
 export class WebhooksModule {
     constructor(http: HttpClient);
     // (undocumented)
@@ -1228,6 +1306,8 @@ export class ZohoCRM {
     // (undocumented)
     removePlugin(name: string): Promise<void>;
     // (undocumented)
+    readonly telemetry: Required<Telemetry>;
+    // (undocumented)
     unregisterExtension(name: string): void;
     // (undocumented)
     use(plugin: ZohoCRMPlugin): Promise<void>;
@@ -1269,6 +1349,8 @@ export interface ZohoCRMConfig {
     region: ZohoRegion;
     // (undocumented)
     retry?: Partial<RetryConfig>;
+    // (undocumented)
+    telemetry?: Telemetry;
     // (undocumented)
     validation?: ValidationOptions;
 }

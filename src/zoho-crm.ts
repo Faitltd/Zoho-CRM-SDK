@@ -4,6 +4,7 @@ import type { HttpClientOptions, RetryConfig } from './http/types';
 import { HttpClient } from './http/http-client';
 import { normalizeLogger, type Logger, type RedactionConfig } from './logger';
 import { normalizeMetrics, type Metrics } from './metrics';
+import { normalizeTelemetry, type Telemetry } from './telemetry';
 import { RateLimiter, type RateLimiterOptions } from './rate-limiter';
 import { normalizeValidationOptions, type ValidationOptions } from './validation';
 import { normalizeProfiler, type NormalizedProfiler, type ProfilerOptions } from './profiling';
@@ -41,6 +42,8 @@ export interface ZohoCRMConfig {
   deprecations?: DeprecationConfig;
   // Optional experimental feature flags.
   experimentalFeatures?: ExperimentalFeatures;
+  // Optional telemetry sink for opt-in experimental usage signals.
+  telemetry?: Telemetry;
 }
 
 export class ZohoCRM {
@@ -54,6 +57,7 @@ export class ZohoCRM {
   readonly bulk: BulkModule;
   readonly logger: Required<Logger>;
   readonly metrics: Required<Metrics>;
+  readonly telemetry: Required<Telemetry>;
   readonly validation: ReturnType<typeof normalizeValidationOptions>;
   readonly profiler: NormalizedProfiler;
   readonly rateLimiter?: RateLimiter;
@@ -77,6 +81,7 @@ export class ZohoCRM {
     const rawLogger = config.logger;
     this.logger = normalizeLogger(rawLogger, config.logRedaction);
     this.metrics = normalizeMetrics(config.metrics);
+    this.telemetry = normalizeTelemetry(config.telemetry);
     this.validation = normalizeValidationOptions(config.validation);
     this.profiler = normalizeProfiler(config.profiler);
     this.audit = normalizeAudit(config.audit);

@@ -36,3 +36,7 @@ export type {
 export { PluginManager } from '../plugins';
 export type { ValidationOptions, ValidationMode } from '../validation';
 export type { ProfilerOptions, ProfileSpan } from '../profiling';
+export type { StabilityLevel, StabilityInfo } from '../stability';
+export { STABILITY, getStability } from '../stability';
+export type { Telemetry, TelemetryEvent } from '../telemetry';
+export { normalizeTelemetry, noopTelemetry } from '../telemetry';

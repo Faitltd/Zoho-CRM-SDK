@@ -56,6 +56,10 @@ export {
   WebhookPayloadSchema
 } from './validation';
 export type { ProfilerOptions, ProfileSpan } from './profiling';
+export type { StabilityLevel, StabilityInfo } from './stability';
+export { STABILITY, getStability } from './stability';
+export type { Telemetry, TelemetryEvent } from './telemetry';
+export { normalizeTelemetry, noopTelemetry } from './telemetry';
 
 export { BaseModule } from './modules/base';
 export type { ListOptions, GetOptions } from './modules/base';

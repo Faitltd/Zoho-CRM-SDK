@@ -86,6 +86,12 @@ export class BaseModule<TRecord, TCreate, TUpdate> {
     return record;
   }
 
+  /**
+   * Create a record in the module.
+   *
+   * @stability stable
+   * @since 0.1.0
+   */
   async create(payload: TCreate): Promise<TRecord> {
     assertNonEmptyObject(payload, 'payload');
     // Zoho expects create payloads to be wrapped in a top-level data array.

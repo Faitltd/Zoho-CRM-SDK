@@ -10,6 +10,7 @@ import { normalizeValidationOptions, type NormalizedValidationOptions, type Vali
 import { normalizeAudit, type AuditConfig, type NormalizedAuditConfig } from '../audit';
 import { configureDeprecations, type DeprecationConfig } from '../deprecation';
 import { type ExperimentalFeatures, isFeatureEnabled } from '../feature-flags';
+import { normalizeTelemetry, type Telemetry } from '../telemetry';
 import { PluginManager, type ZohoCRMPlugin } from '../plugins';
 import type { ZohoCRM } from '../zoho-crm';
 
@@ -28,6 +29,7 @@ export interface BaseClientConfig {
   plugins?: ZohoCRMPlugin[];
   deprecations?: DeprecationConfig;
   experimentalFeatures?: ExperimentalFeatures;
+  telemetry?: Telemetry;
 }
 
 export class BaseClient {
@@ -35,6 +37,7 @@ export class BaseClient {
   readonly http: HttpClient;
   readonly logger: Required<Logger>;
   readonly metrics: Required<Metrics>;
+  readonly telemetry: Required<Telemetry>;
   readonly validation: NormalizedValidationOptions;
   readonly profiler: NormalizedProfiler;
   readonly rateLimiter?: RateLimiter;
@@ -49,6 +52,7 @@ export class BaseClient {
     const rawLogger = config.logger;
     this.logger = normalizeLogger(rawLogger, config.logRedaction);
     this.metrics = normalizeMetrics(config.metrics);
+    this.telemetry = normalizeTelemetry(config.telemetry);
     this.validation = normalizeValidationOptions(config.validation);
     this.profiler = normalizeProfiler(config.profiler);
     this.audit = normalizeAudit(config.audit);
