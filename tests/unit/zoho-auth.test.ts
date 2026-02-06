@@ -5,9 +5,13 @@ import { ClientClosedError, SchemaMismatchError } from '../../src/errors';
 import { ZohoAuth } from '../../src/auth/zoho-auth';
 import type { ZohoOAuthConfig } from '../../src/auth/types';
 
-vi.mock('undici', () => ({
-  request: vi.fn()
-}));
+vi.mock('undici', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('undici')>();
+  return {
+    ...actual,
+    request: vi.fn()
+  };
+});
 
 const requestMock = request as unknown as vi.MockedFunction<typeof request>;
 

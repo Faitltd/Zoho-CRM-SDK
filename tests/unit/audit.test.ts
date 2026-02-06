@@ -4,9 +4,13 @@ import { HttpClient } from '../../src/http/http-client';
 import { normalizeAudit } from '../../src/audit';
 import type { ZohoAuth } from '../../src/auth/zoho-auth';
 
-vi.mock('undici', () => ({
-  request: vi.fn()
-}));
+vi.mock('undici', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('undici')>();
+  return {
+    ...actual,
+    request: vi.fn()
+  };
+});
 
 const requestMock = request as unknown as vi.MockedFunction<typeof request>;
 

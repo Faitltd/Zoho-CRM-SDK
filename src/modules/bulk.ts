@@ -137,21 +137,21 @@ export async function* iterateBulkRead<T = unknown>(
     throw new RequestError('Bulk read job failed.', { statusCode: 500, rawResponse: status });
   }
 
-  let more = hasMoreRecords(status);
-
-  do {
+  while (true) {
     const stream = await bulk.downloadReadResult(jobId);
     for await (const record of parseNdjson<T>(stream)) {
       yield record;
     }
 
-    if (!more) {
+    if (!hasMoreRecords(status)) {
       break;
     }
 
     status = await bulk.getReadStatus(jobId);
-    more = hasMoreRecords(status);
-  } while (more);
+    if (isFailureState(status)) {
+      throw new RequestError('Bulk read job failed.', { statusCode: 500, rawResponse: status });
+    }
+  }
 }
 
 function buildBulkReadPayload(config: BulkReadJobConfig): Record<string, unknown> {

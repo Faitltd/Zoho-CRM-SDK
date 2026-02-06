@@ -5,9 +5,13 @@ import { SchemaMismatchError } from '../../src/errors';
 import { array, normalizeValidationOptions, object, string, validateSchema } from '../../src/validation';
 import type { ZohoAuth } from '../../src/auth/zoho-auth';
 
-vi.mock('undici', () => ({
-  request: vi.fn()
-}));
+vi.mock('undici', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('undici')>();
+  return {
+    ...actual,
+    request: vi.fn()
+  };
+});
 
 const requestMock = request as unknown as vi.MockedFunction<typeof request>;
 

@@ -27,7 +27,7 @@ export function normalizeLegacyConfig<T extends { auth?: ZohoAuth; region: ZohoR
   config: T | (Omit<T, 'auth' | 'region'> & LegacyZohoCRMConfig),
   logger?: Logger
 ): NormalizedLegacyConfig<T> {
-  if ('auth' in config && config.auth instanceof ZohoAuth) {
+  if ('auth' in config && config.auth) {
     return { config: config as T, legacyDetected: false, warnings: [] };
   }
 

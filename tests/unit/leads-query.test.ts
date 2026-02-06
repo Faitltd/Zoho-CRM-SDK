@@ -42,7 +42,7 @@ describe('LeadQueryBuilder', () => {
         per_page: 5
       },
       undefined,
-      expect.anything()
+      undefined
     );
   });
 

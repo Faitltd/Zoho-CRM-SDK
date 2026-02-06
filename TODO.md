@@ -1,7 +1,7 @@
 # Project TODO (Prioritized)
 
 ## P0 — Start Now (Release Blockers)
-- [~] Tooling & CI baseline: add build/lint/test scripts + configs (tsup, vitest, biome) and confirm workflows run.
+- [x] Tooling & CI baseline: add build/lint/test scripts + configs (tsup, vitest, biome) and confirm workflows run.
 - [ ] Audit core implementation vs Prompts 4–9 (auth, HTTP client, CRUD, types, errors) and fill any gaps.
 - [ ] Run unit tests; fix failures; confirm coverage targets.
 - [ ] Verify package exports and ESM/CJS build output.
