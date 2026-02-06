@@ -1,0 +1,12 @@
+{
+  "deprecations": [
+    {
+      "symbol": "legacyAuth",
+      "package": "@yourcompany/zoho-crm",
+      "message": "Legacy auth helper has been replaced by ZohoAuth.",
+      "alternative": "ZohoAuth",
+      "removalVersion": "1.0.0",
+      "docs": "docs/breaking-changes.md"
+    }
+  ]
+}

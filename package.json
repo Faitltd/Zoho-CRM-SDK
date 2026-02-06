@@ -55,6 +55,7 @@
     "api:prepare": "tsc -p tsconfig.api.json",
     "api:extract": "npm run api:prepare && api-extractor run --local",
     "api:baseline": "npm run api:extract && node scripts/semver/update-api-baseline.cjs",
+    "deprecations:scan": "node scripts/deprecation-analyzer.cjs",
     "bundle:size": "node scripts/size/bundle-size.cjs",
     "bundle:compare": "node scripts/size/compare-bundle.cjs",
     "bundle:baseline": "node scripts/size/update-baseline.cjs",

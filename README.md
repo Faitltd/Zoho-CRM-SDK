@@ -104,6 +104,8 @@ process.on('SIGTERM', async () => {
 - Compliance: `docs/compliance.md`
 - Versioning: `docs/versioning.md`
 - Compatibility: `docs/compatibility-matrix.md`
+- Breaking changes: `docs/breaking-changes.md`
+- Breaking change proposal: `docs/breaking-change-proposal-template.md`
 - Plugins: `docs/plugins.md`
 - Integrations: `docs/integrations/README.md`
 - Examples: `examples/`

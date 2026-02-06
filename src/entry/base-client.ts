@@ -8,6 +8,8 @@ import { normalizeProfiler, type NormalizedProfiler, type ProfilerOptions } from
 import { RateLimiter, type RateLimiterOptions } from '../rate-limiter';
 import { normalizeValidationOptions, type NormalizedValidationOptions, type ValidationOptions } from '../validation';
 import { normalizeAudit, type AuditConfig, type NormalizedAuditConfig } from '../audit';
+import { configureDeprecations, type DeprecationConfig } from '../deprecation';
+import { type ExperimentalFeatures, isFeatureEnabled } from '../feature-flags';
 import { PluginManager, type ZohoCRMPlugin } from '../plugins';
 import type { ZohoCRM } from '../zoho-crm';
 
@@ -24,6 +26,8 @@ export interface BaseClientConfig {
   http?: HttpClientOptions;
   audit?: AuditConfig | false;
   plugins?: ZohoCRMPlugin[];
+  deprecations?: DeprecationConfig;
+  experimentalFeatures?: ExperimentalFeatures;
 }
 
 export class BaseClient {
@@ -37,6 +41,7 @@ export class BaseClient {
   readonly audit?: NormalizedAuditConfig;
   readonly plugins: PluginManager;
   readonly region: ZohoRegion;
+  readonly experimentalFeatures: ExperimentalFeatures;
   private readonly limiters: RateLimiter[] = [];
   private readonly extensions = new Set<string>();
 
@@ -48,6 +53,7 @@ export class BaseClient {
     this.profiler = normalizeProfiler(config.profiler);
     this.audit = normalizeAudit(config.audit);
     this.region = config.region;
+    this.experimentalFeatures = config.experimentalFeatures ?? {};
 
     this.auth = config.auth;
     this.auth.setLogger(rawLogger ?? this.logger, config.logRedaction);
@@ -55,6 +61,7 @@ export class BaseClient {
     this.auth.setValidation(config.validation);
     this.auth.setProfiler(this.profiler);
     this.plugins = new PluginManager(this.logger);
+    configureDeprecations(config.deprecations, rawLogger ?? this.logger);
     this.auth.addTokenRefreshListener?.((token: AccessToken, raw: ZohoTokenResponse, cacheKey?: string) =>
       this.plugins.runOnTokenRefresh({ token, raw, cacheKey, region: this.region })
     );
@@ -150,6 +157,10 @@ export class BaseClient {
     return this.plugins.list();
   }
 
+  isExperimentalFeatureEnabled(name: string): boolean {
+    return isFeatureEnabled(this.experimentalFeatures, name);
+  }
+
   registerModule<T>(name: string, module: T): void {
     if (this.isReservedExtension(name)) {
       throw new Error(`Cannot register module "${name}" because it conflicts with core SDK keys.`);
@@ -196,7 +207,8 @@ export class BaseClient {
       'rateLimiter',
       'bulkDownloadLimiter',
       'audit',
-      'plugins'
+      'plugins',
+      'experimentalFeatures'
     ]);
     return reserved.has(name);
   }

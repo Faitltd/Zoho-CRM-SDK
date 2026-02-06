@@ -262,6 +262,9 @@ export class ClientClosedError extends ZohoError {
 }
 
 // @public (undocumented)
+export function configureDeprecations(config?: DeprecationConfig, logger?: Logger): void;
+
+// @public (undocumented)
 export interface ConnectionPoolOptions {
     // (undocumented)
     bodyTimeout?: number;
@@ -475,10 +478,37 @@ export class DealsModule extends BaseModule<Deal, CreateDeal, UpdateDeal> {
     constructor(http: HttpClient);
 }
 
+// @public (undocumented)
+export interface DeprecationConfig {
+    // (undocumented)
+    emitOnce?: boolean;
+    // (undocumented)
+    enabled?: boolean;
+    // (undocumented)
+    suppressEnvVar?: string;
+}
+
+// @public (undocumented)
+export interface DeprecationWarning {
+    // (undocumented)
+    alternative?: string;
+    // (undocumented)
+    feature: string;
+    // (undocumented)
+    message: string;
+    // (undocumented)
+    reason?: string;
+    // (undocumented)
+    removalVersion?: string;
+}
+
 // Warning: (ae-forgotten-export) The symbol "ErrorContext" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
 export type ErrorHook = (ctx: ErrorContext) => void | Promise<void>;
+
+// @public (undocumented)
+export type ExperimentalFeatures = Record<string, boolean>;
 
 // @public
 export function generateWebhookSecret(bytes?: number): string;
@@ -1019,6 +1049,9 @@ export interface ValidationOptions {
 export function verifyWebhookSignature(payload: string | Buffer, signature: string, secret: string, options?: WebhookSignatureOptions): boolean;
 
 // @public (undocumented)
+export function warnDeprecated(details: DeprecationWarning): void;
+
+// @public (undocumented)
 export const WEBHOOK_FIELD_MAP: {
     readonly id: "id";
     readonly name: "name";
@@ -1167,7 +1200,11 @@ export class ZohoCRM {
     // (undocumented)
     dispose(): Promise<void>;
     // (undocumented)
+    readonly experimentalFeatures: ExperimentalFeatures;
+    // (undocumented)
     readonly http: HttpClient;
+    // (undocumented)
+    isExperimentalFeatureEnabled(name: string): boolean;
     // (undocumented)
     readonly leads: LeadsModule;
     // (undocumented)
@@ -1210,6 +1247,10 @@ export interface ZohoCRMConfig {
     auth: ZohoAuth;
     // (undocumented)
     bulkDownloadRateLimit?: RateLimiterOptions | false;
+    // (undocumented)
+    deprecations?: DeprecationConfig;
+    // (undocumented)
+    experimentalFeatures?: ExperimentalFeatures;
     // (undocumented)
     http?: HttpClientOptions;
     // (undocumented)

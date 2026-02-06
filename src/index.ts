@@ -22,6 +22,9 @@ export type { Logger, RedactionConfig } from './logger';
 export type { Metrics } from './metrics';
 export type { AuditConfig, AuditEvent, AuditLogger, AuditRedactionConfig } from './audit';
 export { createJsonAuditLogger } from './audit';
+export type { DeprecationConfig, DeprecationWarning } from './deprecation';
+export { configureDeprecations, warnDeprecated } from './deprecation';
+export type { ExperimentalFeatures } from './feature-flags';
 export type {
   ZohoCRMPlugin,
   ZohoCRMPluginHooks,
