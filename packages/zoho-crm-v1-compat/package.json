@@ -1,0 +1,13 @@
+{
+  "name": "@yourcompany/zoho-crm-v1-compat",
+  "version": "1.0.0",
+  "description": "Compatibility adapter to use v1-style API on top of the v2 Zoho CRM SDK",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "peerDependencies": {
+    "@yourcompany/zoho-crm": ">=2.0.0"
+  }
+}

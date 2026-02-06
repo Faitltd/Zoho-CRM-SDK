@@ -107,6 +107,7 @@ process.on('SIGTERM', async () => {
 - Breaking changes: `docs/breaking-changes.md`
 - Breaking change proposal: `docs/breaking-change-proposal-template.md`
 - Stability levels: `docs/stability.md`
+- Migrations: `docs/migrations/README.md`
 - Plugins: `docs/plugins.md`
 - Integrations: `docs/integrations/README.md`
 - Examples: `examples/`
