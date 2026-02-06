@@ -1,0 +1,26 @@
+{
+  "name": "@yourcompany/zoho-crm-nextjs",
+  "version": "0.1.0",
+  "description": "Next.js integration for the Zoho CRM SDK",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./edge": {
+      "types": "./dist/edge.d.ts",
+      "import": "./dist/edge.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "@yourcompany/zoho-crm": "^0.1.0",
+    "next": ">=13.4"
+  }
+}

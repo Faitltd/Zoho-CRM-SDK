@@ -1,0 +1,19 @@
+{
+  "name": "bulk.read.status",
+  "description": "Fetch bulk read job status",
+  "call": { "module": "bulk", "method": "getReadStatus" },
+  "input": { "id": "JOB_ID" },
+  "request": {
+    "method": "GET",
+    "path": "/crm/bulk/v8/read/JOB_ID"
+  },
+  "response": {
+    "data": [
+      { "id": "JOB_ID", "state": "COMPLETED", "result": { "more_records": false } }
+    ]
+  },
+  "expected": {
+    "result": { "id": "JOB_ID", "state": "COMPLETED", "result": { "more_records": false } }
+  },
+  "live": { "enabled": false, "requiresMutation": true }
+}

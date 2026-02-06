@@ -1,0 +1,31 @@
+{
+  "name": "leads.update",
+  "description": "Update a lead",
+  "call": { "module": "leads", "method": "update" },
+  "input": {
+    "id": "LEAD_ID",
+    "payload": { "Company": "UpdatedCo" }
+  },
+  "request": {
+    "method": "PUT",
+    "path": "/crm/v2/Leads/LEAD_ID",
+    "body": {
+      "data": [
+        { "Company": "UpdatedCo" }
+      ]
+    }
+  },
+  "response": {
+    "data": [
+      { "id": "LEAD_ID", "Company": "UpdatedCo" }
+    ]
+  },
+  "expected": {
+    "result": { "id": "LEAD_ID", "Company": "UpdatedCo" }
+  },
+  "live": {
+    "enabled": false,
+    "requiresMutation": true,
+    "env": { "id": "ZOHO_CONTRACT_LEAD_ID" }
+  }
+}

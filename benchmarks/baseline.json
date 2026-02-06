@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-02-06T00:00:00.000Z",
+  "system": {
+    "node": "v18.x",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "metrics": {
+    "rawHttpAvgMs": 5,
+    "sdkWarmAvgMs": 7,
+    "sdkColdAvgMs": 60,
+    "sdkOverheadMs": 2,
+    "tokenRefreshAvgMs": 50,
+    "validationOverheadMs": 1,
+    "rateLimiterDelayMs": 10,
+    "bulk10kMs": 300,
+    "bulk10kRecordsPerSec": 33000,
+    "bulk100kHeapDeltaMb": 8,
+    "bulk100kHeapMaxMb": 64
+  }
+}

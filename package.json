@@ -1,0 +1,74 @@
+{
+  "name": "@yourcompany/zoho-crm",
+  "version": "0.1.0",
+  "description": "Modern Zoho CRM SDK for Node.js and TypeScript",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs"
+    },
+    "./leads": {
+      "types": "./dist/modules/leads.d.ts",
+      "import": "./dist/modules/leads.js",
+      "require": "./dist/modules/leads.cjs"
+    },
+    "./contacts": {
+      "types": "./dist/modules/contacts.d.ts",
+      "import": "./dist/modules/contacts.js",
+      "require": "./dist/modules/contacts.cjs"
+    },
+    "./deals": {
+      "types": "./dist/modules/deals.d.ts",
+      "import": "./dist/modules/deals.js",
+      "require": "./dist/modules/deals.cjs"
+    },
+    "./webhooks": {
+      "types": "./dist/modules/webhooks.d.ts",
+      "import": "./dist/modules/webhooks.js",
+      "require": "./dist/modules/webhooks.cjs"
+    },
+    "./bulk": {
+      "types": "./dist/modules/bulk.d.ts",
+      "import": "./dist/modules/bulk.js",
+      "require": "./dist/modules/bulk.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE",
+    "docs"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "bundle:size": "node scripts/size/bundle-size.cjs",
+    "bundle:compare": "node scripts/size/compare-bundle.cjs",
+    "bundle:baseline": "node scripts/size/update-baseline.cjs"
+  },
+  "dependencies": {
+    "undici": "^6.21.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  },
+  "keywords": [
+    "Node",
+    "Zoho",
+    "CRM",
+    "OAuth2",
+    "API",
+    "TypeScript"
+  ],
+  "author": "Zoho CRM API Team (support@zohocrm.com)"
+}

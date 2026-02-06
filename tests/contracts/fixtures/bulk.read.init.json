@@ -1,0 +1,34 @@
+{
+  "name": "bulk.read.init",
+  "description": "Initialize bulk read job",
+  "call": { "module": "bulk", "method": "initRead" },
+  "input": {
+    "config": {
+      "module": "Leads",
+      "fields": ["Last_Name", "Company"],
+      "page": 1,
+      "perPage": 200
+    }
+  },
+  "request": {
+    "method": "POST",
+    "path": "/crm/bulk/v8/read",
+    "body": {
+      "query": {
+        "module": { "api_name": "Leads" },
+        "fields": ["Last_Name", "Company"],
+        "page": 1,
+        "per_page": 200
+      }
+    }
+  },
+  "response": {
+    "data": [
+      { "id": "JOB_ID", "state": "ADDED" }
+    ]
+  },
+  "expected": {
+    "result": { "id": "JOB_ID", "state": "ADDED" }
+  },
+  "live": { "enabled": false, "requiresMutation": true }
+}

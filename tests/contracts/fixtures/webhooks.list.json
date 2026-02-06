@@ -1,0 +1,21 @@
+{
+  "name": "webhooks.list",
+  "description": "List webhooks",
+  "call": { "module": "webhooks", "method": "list" },
+  "input": {},
+  "request": {
+    "method": "GET",
+    "path": "/crm/v8/settings/automation/webhooks"
+  },
+  "response": {
+    "webhooks": [
+      { "id": "2001", "name": "Deals" }
+    ]
+  },
+  "expected": {
+    "result": [
+      { "id": "2001", "name": "Deals" }
+    ]
+  },
+  "live": { "enabled": true, "requiresMutation": false }
+}

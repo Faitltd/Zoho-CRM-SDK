@@ -1,0 +1,21 @@
+{
+  "name": "leads.delete",
+  "description": "Delete a lead",
+  "call": { "module": "leads", "method": "delete" },
+  "input": { "id": "LEAD_ID" },
+  "request": {
+    "method": "DELETE",
+    "path": "/crm/v2/Leads/LEAD_ID"
+  },
+  "response": {
+    "data": []
+  },
+  "expected": {
+    "result": null
+  },
+  "live": {
+    "enabled": false,
+    "requiresMutation": true,
+    "env": { "id": "ZOHO_CONTRACT_LEAD_ID" }
+  }
+}

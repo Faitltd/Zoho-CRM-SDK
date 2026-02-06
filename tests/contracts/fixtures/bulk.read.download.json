@@ -1,0 +1,14 @@
+{
+  "name": "bulk.read.download",
+  "description": "Download bulk read job result",
+  "call": { "module": "bulk", "method": "downloadReadResult" },
+  "input": { "id": "JOB_ID" },
+  "request": {
+    "method": "GET",
+    "path": "/crm/bulk/v8/read/JOB_ID/result"
+  },
+  "response": {
+    "raw": ["{\"id\":1}\n", "{\"id\":2}\n"]
+  },
+  "expected": {}
+}

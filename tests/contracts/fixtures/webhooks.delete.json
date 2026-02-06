@@ -1,0 +1,21 @@
+{
+  "name": "webhooks.delete",
+  "description": "Delete webhook",
+  "call": { "module": "webhooks", "method": "delete" },
+  "input": { "id": "WEBHOOK_ID" },
+  "request": {
+    "method": "DELETE",
+    "path": "/crm/v8/settings/automation/webhooks/WEBHOOK_ID"
+  },
+  "response": {
+    "webhooks": []
+  },
+  "expected": {
+    "result": null
+  },
+  "live": {
+    "enabled": false,
+    "requiresMutation": true,
+    "env": { "id": "ZOHO_CONTRACT_WEBHOOK_ID" }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "webhooks.create",
+  "description": "Create webhook",
+  "call": { "module": "webhooks", "method": "create" },
+  "input": {
+    "payload": {
+      "name": "Deals",
+      "url": "https://example.com/webhooks/zoho",
+      "module": "Deals",
+      "events": ["create"]
+    }
+  },
+  "request": {
+    "method": "POST",
+    "path": "/crm/v8/settings/automation/webhooks",
+    "body": {
+      "webhooks": [
+        {
+          "name": "Deals",
+          "url": "https://example.com/webhooks/zoho",
+          "module": "Deals",
+          "events": ["create"]
+        }
+      ]
+    }
+  },
+  "response": {
+    "webhooks": [
+      { "id": "2002", "name": "Deals" }
+    ]
+  },
+  "expected": {
+    "result": { "id": "2002", "name": "Deals" }
+  },
+  "live": { "enabled": false, "requiresMutation": true }
+}

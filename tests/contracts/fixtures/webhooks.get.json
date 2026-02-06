@@ -1,0 +1,23 @@
+{
+  "name": "webhooks.get",
+  "description": "Get webhook by id",
+  "call": { "module": "webhooks", "method": "get" },
+  "input": { "id": "WEBHOOK_ID" },
+  "request": {
+    "method": "GET",
+    "path": "/crm/v8/settings/automation/webhooks/WEBHOOK_ID"
+  },
+  "response": {
+    "webhooks": [
+      { "id": "WEBHOOK_ID", "name": "Deals" }
+    ]
+  },
+  "expected": {
+    "result": { "id": "WEBHOOK_ID", "name": "Deals" }
+  },
+  "live": {
+    "enabled": false,
+    "requiresMutation": true,
+    "env": { "id": "ZOHO_CONTRACT_WEBHOOK_ID" }
+  }
+}

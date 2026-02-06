@@ -1,0 +1,23 @@
+{
+  "name": "leads.get",
+  "description": "Fetch a lead by id",
+  "call": { "module": "leads", "method": "get" },
+  "input": { "id": "LEAD_ID" },
+  "request": {
+    "method": "GET",
+    "path": "/crm/v2/Leads/LEAD_ID"
+  },
+  "response": {
+    "data": [
+      { "id": "LEAD_ID", "Last_Name": "Smith", "Company": "Acme" }
+    ]
+  },
+  "expected": {
+    "result": { "id": "LEAD_ID", "Last_Name": "Smith", "Company": "Acme" }
+  },
+  "live": {
+    "enabled": true,
+    "requiresMutation": false,
+    "env": { "id": "ZOHO_CONTRACT_LEAD_ID" }
+  }
+}

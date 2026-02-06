@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-02-06T00:00:00.000Z",
+  "metrics": {
+    "coreGzipKb": 10,
+    "totalGzipKb": 40,
+    "leadsGzipKb": 4,
+    "contactsGzipKb": 4,
+    "dealsGzipKb": 4,
+    "webhooksGzipKb": 4,
+    "bulkGzipKb": 4
+  },
+  "budgetChecks": {
+    "core": true,
+    "total": true,
+    "leads": true,
+    "contacts": true,
+    "deals": true,
+    "webhooks": true,
+    "bulk": true
+  }
+}

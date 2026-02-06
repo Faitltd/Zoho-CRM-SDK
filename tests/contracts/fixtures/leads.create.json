@@ -1,0 +1,26 @@
+{
+  "name": "leads.create",
+  "description": "Create a lead",
+  "call": { "module": "leads", "method": "create" },
+  "input": {
+    "payload": { "Last_Name": "Smith", "Company": "Acme" }
+  },
+  "request": {
+    "method": "POST",
+    "path": "/crm/v2/Leads",
+    "body": {
+      "data": [
+        { "Last_Name": "Smith", "Company": "Acme" }
+      ]
+    }
+  },
+  "response": {
+    "data": [
+      { "id": "1003", "Last_Name": "Smith", "Company": "Acme" }
+    ]
+  },
+  "expected": {
+    "result": { "id": "1003", "Last_Name": "Smith", "Company": "Acme" }
+  },
+  "live": { "enabled": false, "requiresMutation": true }
+}

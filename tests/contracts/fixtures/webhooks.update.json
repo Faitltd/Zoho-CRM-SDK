@@ -1,0 +1,31 @@
+{
+  "name": "webhooks.update",
+  "description": "Update webhook",
+  "call": { "module": "webhooks", "method": "update" },
+  "input": {
+    "id": "WEBHOOK_ID",
+    "payload": { "description": "Updated" }
+  },
+  "request": {
+    "method": "PUT",
+    "path": "/crm/v8/settings/automation/webhooks/WEBHOOK_ID",
+    "body": {
+      "webhooks": [
+        { "description": "Updated" }
+      ]
+    }
+  },
+  "response": {
+    "webhooks": [
+      { "id": "WEBHOOK_ID", "description": "Updated" }
+    ]
+  },
+  "expected": {
+    "result": { "id": "WEBHOOK_ID", "description": "Updated" }
+  },
+  "live": {
+    "enabled": false,
+    "requiresMutation": true,
+    "env": { "id": "ZOHO_CONTRACT_WEBHOOK_ID" }
+  }
+}
