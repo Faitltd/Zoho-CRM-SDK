@@ -10,7 +10,7 @@ export interface FeatureFlags {
 export type ExperimentalFeatures = Record<string, boolean>;
 
 export function isFeatureEnabled(flags: ExperimentalFeatures | undefined, name: string): boolean {
-  return Boolean(flags && flags[name]);
+  return Boolean(flags?.[name]);
 }
 
 export function getFeatureFlag(flags: FeatureFlags | undefined, name: keyof FeatureFlags, fallback = false): boolean {

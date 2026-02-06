@@ -50,7 +50,7 @@ export interface TokenRefreshContext {
 
 export type BeforeRequestHook = (
   ctx: BeforeRequestContext
-) => void | PluginResponseOverride | Promise<void | PluginResponseOverride>;
+) => PluginResponseOverride | undefined | Promise<PluginResponseOverride | undefined>;
 export type AfterResponseHook = (ctx: AfterResponseContext) => void | Promise<void>;
 export type ErrorHook = (ctx: ErrorContext) => void | Promise<void>;
 export type TokenRefreshHook = (ctx: TokenRefreshContext) => void | Promise<void>;

@@ -226,9 +226,9 @@ export function object<T extends Record<string, Schema<unknown>>>(
       if (extraKeys.length > 0) {
         const behavior = ctx.options.mode === 'strict' ? 'error' : options.unknownKeys ?? 'passthrough';
         if (behavior === 'error') {
-          extraKeys.forEach((key) => {
+          for (const key of extraKeys) {
             ctx.issues.push(createIssue([...path, key], 'unknown key', recordValue[key]));
-          });
+          }
         } else if (ctx.options.warnUnknownFields) {
           ctx.unknownFields.push({
             schema: ctx.schemaName,

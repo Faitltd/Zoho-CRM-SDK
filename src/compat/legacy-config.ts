@@ -65,7 +65,9 @@ export function normalizeLegacyConfig<T extends { auth?: ZohoAuth; region: ZohoR
   warnings.push('Using deprecated v1 config format. See migration guide.');
 
   if (logger?.warn) {
-    warnings.forEach((warning) => logger.warn?.(warning));
+    for (const warning of warnings) {
+      logger.warn?.(warning);
+    }
   }
 
   return { config: normalized, legacyDetected: true, warnings };

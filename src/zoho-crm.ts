@@ -319,7 +319,7 @@ export class ZohoCRM {
     this.extensions.add(name);
   }
 
-  registerMethod<T extends (...args: any[]) => unknown>(name: string, fn: T): void {
+  registerMethod<T extends (...args: unknown[]) => unknown>(name: string, fn: T): void {
     if (this.isReservedExtension(name)) {
       throw new Error(`Cannot register method "${name}" because it conflicts with core SDK keys.`);
     }

@@ -45,7 +45,8 @@ describe('Audit logging', () => {
         email: 'person@example.com',
         token: 'secret-token'
       })
-    })!;
+    });
+    expect(audit).toBeDefined();
 
     const client = new HttpClient(
       authMock,
@@ -57,7 +58,7 @@ describe('Audit logging', () => {
       undefined,
       undefined,
       undefined,
-      audit
+      audit ?? undefined
     );
 
     await client.get('/Leads');
@@ -78,7 +79,8 @@ describe('Audit logging', () => {
     requestMock.mockResolvedValue(createResponse(400, { message: 'Bad request', status: 'error' }));
 
     const logger = { log: vi.fn() };
-    const audit = normalizeAudit({ enabled: true, logger })!;
+    const audit = normalizeAudit({ enabled: true, logger });
+    expect(audit).toBeDefined();
 
     const client = new HttpClient(
       authMock,
@@ -90,7 +92,7 @@ describe('Audit logging', () => {
       undefined,
       undefined,
       undefined,
-      audit
+      audit ?? undefined
     );
 
     await expect(client.get('/Leads')).rejects.toBeDefined();

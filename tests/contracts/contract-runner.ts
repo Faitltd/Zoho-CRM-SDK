@@ -242,7 +242,7 @@ function getRequestFromMock(http: HttpClientMock, method: keyof HttpClientMock):
         path,
         body: paramsOrBody
       };
-    case 'requestRaw':
+    case 'requestRaw': {
       const config = (call[0] ?? {}) as {
         method?: ContractRequest['method'];
         path?: string;
@@ -255,6 +255,7 @@ function getRequestFromMock(http: HttpClientMock, method: keyof HttpClientMock):
         params: config.params,
         body: config.body
       };
+    }
     default:
       return {
         method: 'GET',
