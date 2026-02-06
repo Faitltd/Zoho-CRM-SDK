@@ -70,7 +70,16 @@
     "release:beta:major": "npm version premajor --preid=beta",
     "release:beta:minor": "npm version preminor --preid=beta",
     "release:beta:patch": "npm version prepatch --preid=beta",
-    "semver:check": "node scripts/semver/verify-version.cjs"
+    "semver:check": "node scripts/semver/verify-version.cjs",
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format --write .",
+    "docs": "typedoc",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "undici": "^6.21.0"
@@ -78,9 +87,14 @@
   "devDependencies": {
     "@microsoft/api-extractor": "^7.43.0",
     "@types/node": "^20.11.30",
+    "@biomejs/biome": "^1.9.4",
+    "@vitest/coverage-v8": "^2.1.8",
     "esbuild": "^0.25.0",
     "jscodeshift": "^0.15.2",
     "standard-version": "^9.5.0",
+    "tsup": "^8.0.1",
+    "typedoc": "^0.25.13",
+    "vitest": "^2.1.8",
     "typescript": "^5.7.3"
   },
   "keywords": [
