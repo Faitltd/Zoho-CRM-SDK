@@ -25,9 +25,9 @@
 
 ## Execution (Status)
 - [ ] Choose execution approach (manual / AI-assisted / hybrid).
-- [ ] Confirm repo scaffolding from Prompt 4 (tsconfig, tsup, vitest, biome).
-- [ ] Ensure CI/CD from Prompt 4 is in place and green.
-- [ ] Build MVP: auth, HTTP, Leads CRUD, types, errors.
+- [x] Confirm repo scaffolding from Prompt 4 (tsconfig, tsup, vitest, biome).
+- [~] Ensure CI/CD from Prompt 4 is in place and green.
+- [x] Build MVP: auth, HTTP, Leads CRUD, types, errors.
 - [ ] Time estimate: 40–80 hours for full implementation.
 
 ## Validation & Testing
