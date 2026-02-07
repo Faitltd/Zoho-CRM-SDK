@@ -6,6 +6,8 @@ dist/
 coverage/
 *.tsbuildinfo
 temp/
+benchmarks/results.json
+benchmarks/compare-summary.md
 
 # Logs
 npm-debug.log*
