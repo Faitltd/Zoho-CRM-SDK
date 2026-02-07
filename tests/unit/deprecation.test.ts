@@ -15,7 +15,7 @@ import { configureDeprecations, warnDeprecated } from '../../src/deprecation';
 describe('deprecation warnings', () => {
   beforeEach(() => {
     warn.mockReset();
-    delete process.env.ZOHO_CRM_SDK_SUPPRESS_DEPRECATION_WARNINGS;
+    process.env.ZOHO_CRM_SDK_SUPPRESS_DEPRECATION_WARNINGS = undefined;
   });
 
   it('logs a warning with metadata', () => {

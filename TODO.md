@@ -14,10 +14,10 @@
 - [x] Contract tests + chaos tests + performance baselines (Prompts 13, A1–A3, B1–B2).
 - [x] Documentation pack: README, docs/, TypeDoc, examples (Prompts 14–15).
 - [x] npm publish readiness (Prompt 16): pack/install test, engines, exports.
-- [ ] Launch materials + community setup (Prompt 17, F3).
+- [~] Launch materials + community setup (Prompt 17, F3) — drafts in `docs/launch-materials.md`, `docs/community-setup.md`.
 
 ## P2 — Post-release / Iteration
-- [ ] Webhooks module (Prompt 11) and Bulk operations (Prompt 12).
+- [x] Webhooks module (Prompt 11) and Bulk operations (Prompt 12).
 - [ ] Advanced performance + bundle size optimization (Prompts B1–B3).
 - [ ] Security hardening + compliance tooling (Prompts C1–C2).
 - [ ] Plugin system + framework integrations (Prompts F1–F2).
@@ -32,7 +32,7 @@
 
 ## Validation & Testing
 - [ ] Market validation: searches, interviews, landing page signups, decision gate.
-- [~] Unit tests (80%+), integration tests, contract tests, chaos tests.
+- [~] Unit tests (80%+), integration tests (Leads/Bulk/Webhooks), contract tests, chaos tests.
 - [~] Performance benchmarks, memory leak testing, bundle size checks.
 - [ ] Time estimate: 20–40 hours.
 
@@ -52,8 +52,8 @@
 - [ ] Time estimate: 5–10 hours.
 
 ## Advanced Features (Optional for v1)
-- [ ] Webhooks (Prompt 11).
-- [ ] Bulk operations (Prompt 12).
+- [x] Webhooks (Prompt 11).
+- [x] Bulk operations (Prompt 12).
 - [ ] Advanced testing (Prompts A1–A3).
 - [ ] Performance optimization (Prompts B1–B3).
 - [ ] Security hardening (Prompts C1–C2).
@@ -108,6 +108,6 @@
 - Core Implementation: Complete (MVP + core modules)
 - Testing: In progress
 - Documentation: Complete
-- Launch Prep: Not started
+- Launch Prep: In progress (draft materials)
 - Community: Not started
-- Overall Completion: ~45% (core + docs done, testing in progress)
+- Overall Completion: ~50% (core + docs done, testing in progress)

@@ -80,6 +80,7 @@
     "dev": "tsup --watch",
     "build": "tsup",
     "test": "vitest run",
+    "test:integration": "vitest run tests/integration",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
     "lint": "biome lint .",

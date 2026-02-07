@@ -60,7 +60,7 @@ describe('ZohoCRM extensions', () => {
 
   it('falls back to invalidateToken when clearTokenCache is missing', () => {
     const auth = createAuthMock();
-    delete (auth as { clearTokenCache?: () => void }).clearTokenCache;
+    (auth as { clearTokenCache?: () => void }).clearTokenCache = undefined;
     const crm = new ZohoCRM({ auth, region: 'US' });
 
     crm.clearCachedState();
