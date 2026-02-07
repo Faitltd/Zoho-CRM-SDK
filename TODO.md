@@ -24,7 +24,7 @@
 - [ ] Monetization + community roadmap (Prompts 18, F3).
 
 ## Execution (Status)
-- [ ] Choose execution approach (manual / AI-assisted / hybrid).
+- [x] Choose execution approach (hybrid: AI for scaffolding/tests, manual review for logic).
 - [x] Confirm repo scaffolding from Prompt 4 (tsconfig, tsup, vitest, biome).
 - [~] Ensure CI/CD from Prompt 4 is in place and green.
 - [x] Build MVP: auth, HTTP, Leads CRUD, types, errors.
@@ -47,7 +47,7 @@
 ## Launch Preparation
 - [~] Verify exports, npm pack/install, publish to npm (Prompt 16).
 - [ ] Launch materials: Show HN, Reddit, Dev.to (Prompt 17).
-- [ ] Issue templates + CONTRIBUTING (Prompt 17).
+- [x] Issue templates + CONTRIBUTING (Prompt 17).
 - [ ] Community setup (Discord/Slack, GitHub Discussions, social).
 - [ ] Time estimate: 5–10 hours.
 
