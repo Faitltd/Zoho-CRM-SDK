@@ -13,7 +13,7 @@
 - [ ] Market validation (Prompts 1–2): searches, 5–10 interviews, landing page with 50+ signups, decision gate.
 - [~] Contract tests + chaos tests + performance baselines (Prompts 13, A1–A3, B1–B2).
 - [x] Documentation pack: README, docs/, TypeDoc, examples (Prompts 14–15).
-- [~] npm publish readiness (Prompt 16): pack/install test, engines, exports.
+- [x] npm publish readiness (Prompt 16): pack/install test, engines, exports.
 - [ ] Launch materials + community setup (Prompt 17, F3).
 
 ## P2 — Post-release / Iteration
