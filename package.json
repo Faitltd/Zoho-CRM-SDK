@@ -55,6 +55,12 @@
     "LICENSE",
     "docs"
   ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "sideEffects": false,
   "scripts": {
     "api:prepare": "tsc -p tsconfig.api.json",

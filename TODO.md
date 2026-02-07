@@ -11,9 +11,9 @@
 
 ## P1 — Pre-release Polish
 - [ ] Market validation (Prompts 1–2): searches, 5–10 interviews, landing page with 50+ signups, decision gate.
-- [ ] Contract tests + chaos tests + performance baselines (Prompts 13, A1–A3, B1–B2).
+- [~] Contract tests + chaos tests + performance baselines (Prompts 13, A1–A3, B1–B2).
 - [x] Documentation pack: README, docs/, TypeDoc, examples (Prompts 14–15).
-- [ ] npm publish readiness (Prompt 16): pack/install test, engines, exports.
+- [~] npm publish readiness (Prompt 16): pack/install test, engines, exports.
 - [ ] Launch materials + community setup (Prompt 17, F3).
 
 ## P2 — Post-release / Iteration
@@ -45,7 +45,7 @@
 - [ ] Time estimate: 10–20 hours.
 
 ## Launch Preparation
-- [ ] Verify exports, npm pack/install, publish to npm (Prompt 16).
+- [~] Verify exports, npm pack/install, publish to npm (Prompt 16).
 - [ ] Launch materials: Show HN, Reddit, Dev.to (Prompt 17).
 - [ ] Issue templates + CONTRIBUTING (Prompt 17).
 - [ ] Community setup (Discord/Slack, GitHub Discussions, social).
