@@ -66,6 +66,76 @@ describe('BulkModule', () => {
     expect(http.requestRaw).toHaveBeenCalledWith({ method: 'GET', path: '/crm/bulk/v8/read/job1/result' });
   });
 
+  it('initializes bulk write with mapped payload', async () => {
+    const http = createHttpMock();
+    const module = new BulkModule(http);
+
+    http.post.mockResolvedValue({
+      data: { data: [{ id: 'job2', state: 'ADDED' }] },
+      status: 200,
+      headers: {}
+    });
+
+    const result = await module.initWrite({
+      operation: 'insert',
+      module: 'Leads',
+      fileId: 'file-1',
+      fieldMappings: [{ apiName: 'Last_Name', index: 0 }]
+    });
+
+    expect(result.id).toBe('job2');
+    expect(http.post).toHaveBeenCalledWith(
+      '/crm/bulk/v8/write',
+      {
+        operation: 'insert',
+        resource: [
+          {
+            type: 'data',
+            module: 'Leads',
+            file_id: 'file-1',
+            field_mappings: [{ api_name: 'Last_Name', index: 0 }]
+          }
+        ]
+      },
+      undefined,
+      expect.anything()
+    );
+  });
+
+  it('gets bulk write status', async () => {
+    const http = createHttpMock();
+    const module = new BulkModule(http);
+
+    http.get.mockResolvedValue({
+      data: { data: [{ id: 'job2', state: 'IN_PROGRESS' }] },
+      status: 200,
+      headers: {}
+    });
+
+    const status = await module.getWriteStatus('job2');
+    expect(status.id).toBe('job2');
+    expect(http.get).toHaveBeenCalledWith(
+      '/crm/bulk/v8/write/job2',
+      undefined,
+      undefined,
+      expect.anything()
+    );
+  });
+
+  it('rejects invalid bulk write configs', async () => {
+    const http = createHttpMock();
+    const module = new BulkModule(http);
+
+    await expect(
+      module.initWrite({
+        operation: 'insert',
+        module: 'Leads',
+        fileId: 'file-1',
+        fieldMappings: 'invalid' as unknown as []
+      })
+    ).rejects.toBeInstanceOf(Error);
+  });
+
   it('rate limits bulk download requests', async () => {
     vi.useFakeTimers();
     vi.setSystemTime(0);
@@ -118,6 +188,17 @@ describe('iterateBulkRead', () => {
     }
 
     expect(records.map((record) => record.id)).toEqual([1, 2, 3]);
+  });
+
+  it('throws when bulk read job id is missing', async () => {
+    const bulk = {
+      initRead: vi.fn().mockResolvedValue({ state: 'COMPLETED' } as BulkReadJobStatus),
+      getReadStatus: vi.fn(),
+      downloadReadResult: vi.fn()
+    } as unknown as BulkModule;
+
+    const iterator = iterateBulkRead<{ id: number }>(bulk, { module: 'Leads' });
+    await expect(iterator.next()).rejects.toBeInstanceOf(Error);
   });
 });
 

@@ -112,6 +112,59 @@ describe('ZohoAuth', () => {
     expect(raw).toEqual(tokenResponse);
   });
 
+  it('uses onTokenRetrieve when cache is empty', async () => {
+    const onTokenRetrieve = vi.fn().mockResolvedValue({
+      token: 'cached',
+      type: 'Bearer',
+      expiresAt: Date.now() + 10 * 60_000
+    });
+
+    const auth = new ZohoAuth({
+      ...baseConfig,
+      onTokenRetrieve
+    });
+
+    const token = await auth.getAccessToken('account-1');
+    expect(token).toBe('cached');
+    expect(onTokenRetrieve).toHaveBeenCalledWith('account-1');
+    expect(requestMock).not.toHaveBeenCalled();
+  });
+
+  it('invalidates cached tokens and forces refresh', async () => {
+    requestMock.mockResolvedValue(createResponse(200, tokenResponse));
+
+    const auth = new ZohoAuth(baseConfig);
+    await auth.getAccessToken();
+    auth.invalidateToken();
+    await auth.getAccessToken();
+
+    expect(requestMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('evicts oldest cached tokens when max size is reached', async () => {
+    const logger = createLogger();
+    requestMock
+      .mockResolvedValueOnce(createResponse(200, { ...tokenResponse, access_token: 'a' }))
+      .mockResolvedValueOnce(createResponse(200, { ...tokenResponse, access_token: 'b' }))
+      .mockResolvedValueOnce(createResponse(200, { ...tokenResponse, access_token: 'c' }))
+      .mockResolvedValueOnce(createResponse(200, { ...tokenResponse, access_token: 'a2' }));
+
+    const auth = new ZohoAuth({ ...baseConfig, maxCachedTokens: 2, logger });
+    await auth.getAccessToken('one');
+    await auth.getAccessToken('two');
+    await auth.getAccessToken('three');
+
+    await auth.getAccessToken('one');
+
+    expect(logger.warn).toHaveBeenCalledWith('Token cache limit reached; evicting oldest token.', {
+      cacheKey: expect.any(String),
+      maxCachedTokens: '[redacted]'
+    });
+    const warnedKeys = logger.warn.mock.calls.map((call) => call[1]?.cacheKey);
+    expect(warnedKeys).toContain('one');
+    expect(requestMock).toHaveBeenCalledTimes(4);
+  });
+
   it('logs auth errors without leaking secrets', async () => {
     const logger = createLogger();
 

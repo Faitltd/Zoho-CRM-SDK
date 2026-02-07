@@ -10,7 +10,15 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'html'],
       include: ['src/**/*.ts'],
-      exclude: ['src/entry/**', 'src/experimental/**']
+      exclude: [
+        'src/entry/**',
+        'src/experimental/**',
+        'src/types/**',
+        'src/**/index.ts',
+        'src/stability.ts',
+        'src/auth/types.ts',
+        'src/http/types.ts'
+      ]
     }
   }
 });

@@ -74,10 +74,19 @@ describe('ZohoCRM plugins', () => {
     const logger = createLogger();
     const crm = new ZohoCRM({ auth, region: 'US', logger });
 
-    const plugin = { name: 'test', version: '1.0.0', install: vi.fn() };
+    const plugin = {
+      name: 'test',
+      version: '1.0.0',
+      install: vi.fn((client: ZohoCRM) => {
+        client.plugins.registerHooks('test', {
+          beforeRequest: vi.fn()
+        });
+      })
+    };
     await crm.use(plugin);
 
     expect(plugin.install).toHaveBeenCalledWith(crm);
+    expect(crm.plugins.list().map((entry) => entry.name)).toContain('test');
     expect(crm.listPlugins().map((entry) => entry.name)).toContain('test');
   });
 
