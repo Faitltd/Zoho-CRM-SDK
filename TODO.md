@@ -12,7 +12,7 @@
 ## P1 — Pre-release Polish
 - [ ] Market validation (Prompts 1–2): searches, 5–10 interviews, landing page with 50+ signups, decision gate.
 - [ ] Contract tests + chaos tests + performance baselines (Prompts 13, A1–A3, B1–B2).
-- [ ] Documentation pack: README, docs/, TypeDoc, examples (Prompts 14–15).
+- [x] Documentation pack: README, docs/, TypeDoc, examples (Prompts 14–15).
 - [ ] npm publish readiness (Prompt 16): pack/install test, engines, exports.
 - [ ] Launch materials + community setup (Prompt 17, F3).
 
@@ -37,10 +37,10 @@
 - [ ] Time estimate: 20–40 hours.
 
 ## Documentation
-- [ ] README (Prompt 14).
-- [ ] TypeDoc setup (Prompt 14).
-- [ ] Usage guides in docs/ (Prompt 14).
-- [ ] Example scripts (Prompt 15).
+- [x] README (Prompt 14).
+- [x] TypeDoc setup (Prompt 14).
+- [x] Usage guides in docs/ (Prompt 14).
+- [x] Example scripts (Prompt 15).
 - [ ] Migration guides plan (Prompt H3).
 - [ ] Time estimate: 10–20 hours.
 
@@ -105,9 +105,9 @@
 ## Status Summary
 - Planning & Documentation: Complete (prompts drafted)
 - Market Validation: Not started
-- Core Implementation: In progress
+- Core Implementation: Complete (MVP + core modules)
 - Testing: In progress
-- Documentation: In progress
+- Documentation: Complete
 - Launch Prep: Not started
 - Community: Not started
-- Overall Completion: ~30% (core + tests in progress)
+- Overall Completion: ~45% (core + docs done, testing in progress)
