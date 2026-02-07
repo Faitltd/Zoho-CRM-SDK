@@ -32,7 +32,7 @@
 
 ## Validation & Testing
 - [ ] Market validation: searches, interviews, landing page signups, decision gate.
-- [ ] Unit tests (80%+), integration tests, contract tests, chaos tests.
+- [~] Unit tests (80%+), integration tests, contract tests, chaos tests.
 - [~] Performance benchmarks, memory leak testing, bundle size checks.
 - [ ] Time estimate: 20–40 hours.
 
@@ -41,7 +41,7 @@
 - [x] TypeDoc setup (Prompt 14).
 - [x] Usage guides in docs/ (Prompt 14).
 - [x] Example scripts (Prompt 15).
-- [ ] Migration guides plan (Prompt H3).
+- [x] Migration guides plan (Prompt H3).
 - [ ] Time estimate: 10–20 hours.
 
 ## Launch Preparation
