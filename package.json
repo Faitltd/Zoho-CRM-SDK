@@ -93,7 +93,7 @@
     "undici": "^6.21.0"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.43.0",
+    "@microsoft/api-extractor": "^7.56.3",
     "@types/node": "^20.11.30",
     "@biomejs/biome": "^1.9.4",
     "@vitest/coverage-v8": "^2.1.8",
